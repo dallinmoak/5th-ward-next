@@ -9,15 +9,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <div>
         <h1>
           Hello world
         </h1>
-      </main>
-
-      <footer>
-          footer
-      </footer>
+      </div>
     </div>
   )
 }
