@@ -1,8 +1,6 @@
-import { useState } from "react";
-
 export default function navbar(){
 
-  const [ navList, setNavList ] = useState([
+  const navList = [
     'Home',
     'Elder\'s quorum',
     'Relief Society',
@@ -12,7 +10,7 @@ export default function navbar(){
     'Young Women',
     'Sunday School',
     'Primary'
-  ])
+  ];
 
   return(
     <nav className="main-nav">
