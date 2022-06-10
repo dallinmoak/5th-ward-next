@@ -1,3 +1,5 @@
+@import 'variables';
+
 nav.main-nav{
   background-color: $mid-gray;
   color: $white;
@@ -33,7 +35,7 @@ nav.main-nav{
   }
 }
 
-a.nav-link,.svg-inline--fa{
+a.nav-link,.font-icon{
   cursor: pointer;
   &:hover{
     color: $mid-blue;
@@ -49,7 +51,7 @@ a.nav-link,.svg-inline--fa{
 @media screen and (min-width:1121px){
   nav.main-nav>.nav-inner{
     height: 5em;
-    .svg-inline--fa{
+    .font-icon{
       display: none;
     }
     ul.nav-items{
@@ -64,10 +66,14 @@ a.nav-link,.svg-inline--fa{
 @media screen and (max-width:1120px){
   nav.main-nav>.nav-inner{
     height:auto;
-    .svg-inline--fa{
+    .font-icon{
       margin: 1em 1em 0em 0em;
       float:right;
       width: 2em;
+      height: 2em;
+      &.collapsed{
+        margin:0 1em 0 0;
+      }
     }
     ul.nav-items{
       &.collapsed{
