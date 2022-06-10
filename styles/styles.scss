@@ -16,12 +16,9 @@ body {
   min-height: 100vh;
 }
 
-a {
-  color: $mid-blue;
-  text-decoration: underline;
-  &:hover{
-    color: $dark-blue;
-  }
+a{
+  color: inherit;
+  text-decoration: none;
 }
 
 * {

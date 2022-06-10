@@ -8,5 +8,12 @@ footer{
   border-top: 2px solid $dark-blue;
   .footer-content{
     padding: 1em 2em;
+    a {
+      color: $mid-blue;
+      text-decoration: underline;
+      &:hover{
+        color: $dark-blue;
+      }
+    }
   }
 }
