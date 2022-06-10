@@ -1,0 +1,12 @@
+footer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: $dark-white;
+  border-top: 2px solid $dark-blue;
+  .footer-content{
+    padding: 1em 2em;
+  }
+}
