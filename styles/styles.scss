@@ -1,0 +1,32 @@
+@import 'variables';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: $white;
+  height: 100vh;
+}
+
+#__next{
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  min-height: 100vh;
+}
+
+a {
+  color: $mid-blue;
+  text-decoration: underline;
+  &:hover{
+    color: $dark-blue;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@import 'nav';
+@import 'footer';
