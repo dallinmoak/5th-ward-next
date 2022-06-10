@@ -1,0 +1,18 @@
+@import 'variables';
+
+a.link{
+  color: $mid-blue;
+  text-decoration: underline;
+  &:hover{
+    color: $dark-blue;
+  }
+}
+
+div.message{
+  padding-left: 1em;
+  .message-inner{
+    font-size: 1rem;
+    font-weight: normal;
+    margin-left: 1em;
+  }
+}

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Link from 'next/link';
+import styles from '../styles/nav.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -8,38 +10,40 @@ export default function navbar(){
   const [collapseState, setCollapseButton ] = useState('collapsed');
 
   const navList = [
-    'Home',
-    'Elder\'s quorum',
-    'Relief Society',
-    'Bishopric',
-    'Calendar',
-    'Young Men',
-    'Young Women',
-    'Sunday School',
-    'Primary'
+    {name:'Home', route:'/'},
+    {name:'Elder\'s quorum', route:'/elders-quorum'},
+    {name:'Relief Society', route: '/relief-society'},
+    {name:'Bishopric', route: '/bishopric'},
+    {name:'Calendar', route: '/calendar'},
+    {name:'Young Men', route: '/young-men'},
+    {name:'Young Women', route: '/young-women'},
+    {name:'Sunday School', route: '/sunday-school'},
+    {name:'Primary', route: '/primary'}
   ];
   function toggleCollapse(){
     setCollapseButton( collapseState=='collapsed' ? 'expanded': 'collapsed');
   }
 
   return(
-    <nav className="main-nav">
-      <div className="nav-inner">
-        <div className="nav-title">
-          <h1><a>El Paso 5th Ward</a></h1>
+    <nav className={styles['main-nav']}>
+      <div className={styles['nav-inner']}>
+        <div className={styles['nav-title']}>
+          <h1><Link href='/'><a>El Paso 5th Ward</a></Link></h1>
         </div>
-        <div className="nav-list-container">
+        <div className={styles['nav-list-container']}>
           <FontAwesomeIcon
             icon={collapseState == 'collapsed' ? faBars : faXmark}
-            className={collapseState}
+            className={styles['font-icon'] + " " + styles[collapseState]}
             onClick={() => toggleCollapse()}
           />
-          <ul className={`nav-items ${collapseState}`}>
+          <ul className={styles['nav-items'] + " " + styles[collapseState]}>
             {navList.map((navItem, index) => {
               return(
-                <li key={index}><a className="nav-link">
-                  {navItem}
-                </a></li>
+                <li key={index}>
+                  <Link href={navItem.route}><a className={styles['nav-link']}>
+                    {navItem.name}
+                  </a></Link>
+                </li>
               )
             })}
           </ul>
