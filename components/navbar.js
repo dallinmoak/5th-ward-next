@@ -27,24 +27,30 @@ export default function navbar(){
   return(
     <nav className={styles['main-nav']}>
       <div className={styles['nav-inner']}>
-        <div className={styles['nav-title']}>
-          <h1><Link href='/'><a>El Paso 5th Ward</a></Link></h1>
-        </div>
-        <div className={styles['nav-list-container']}>
+        <div className={styles['nav-title-wrapper']}>
+          <div className={styles['nav-title']}>
+            <h1>
+              <Link href="/">
+                <a>El Paso 5th Ward</a>
+              </Link>
+            </h1>
+          </div>
           <FontAwesomeIcon
             icon={collapseState == 'collapsed' ? faBars : faXmark}
             className={styles['font-icon'] + " " + styles[collapseState]}
             onClick={() => toggleCollapse()}
           />
+        </div>
+        <div className={styles['nav-list-container']}>
           <ul className={styles['nav-items'] + " " + styles[collapseState]}>
             {navList.map((navItem, index) => {
-              return(
-                <li key={index}>
-                  <Link href={navItem.route}><a className={styles['nav-link']}>
-                    {navItem.name}
-                  </a></Link>
+              return (
+                <li key={index} onClick={() => toggleCollapse()}>
+                  <Link href={navItem.route}>
+                    <a className={styles['nav-link']}>{navItem.name}</a>
+                  </Link>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
