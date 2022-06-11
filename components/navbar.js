@@ -18,7 +18,8 @@ export default function navbar(){
     {name:'Young Men', route: '/young-men'},
     {name:'Young Women', route: '/young-women'},
     {name:'Sunday School', route: '/sunday-school'},
-    {name:'Primary', route: '/primary'}
+    {name:'Primary', route: '/primary'},
+    {name: 'Missionaries', route: '/missionaries'}
   ];
   function toggleCollapse(){
     setCollapseButton( collapseState=='collapsed' ? 'expanded': 'collapsed');
