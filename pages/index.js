@@ -14,6 +14,7 @@ export default function Home() {
       <button>Action 2</button>
       <button>Action 3</button>
       <button>Action 4</button>
+      <button>Action 5</button>
     </div>
   );
 }
