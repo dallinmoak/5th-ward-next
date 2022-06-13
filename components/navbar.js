@@ -18,7 +18,8 @@ export default function navbar(){
     {name:'Young Men', route: '/young-men'},
     {name:'Young Women', route: '/young-women'},
     {name:'Sunday School', route: '/sunday-school'},
-    {name:'Primary', route: '/primary'}
+    {name:'Primary', route: '/primary'},
+    {name: 'Missionaries', route: '/missionaries'}
   ];
   function toggleCollapse(){
     setCollapseButton( collapseState=='collapsed' ? 'expanded': 'collapsed');
@@ -28,7 +29,7 @@ export default function navbar(){
     <nav className={styles['main-nav']}>
       <div className={styles['nav-inner']}>
         <div className={styles['nav-title-wrapper']}>
-          <div className={styles['nav-title']}>
+          <div className={styles['nav-title']} onClick={()=> toggleCollapse()}>
             <h1>
               <Link href="/">
                 <a>El Paso 5th Ward</a>
