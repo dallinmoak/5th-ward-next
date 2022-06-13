@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/home.module.scss';
+import Link from 'next/link';
+import quickLinks from '../common/quick-links';
 
 export default function Home() {
   return (
@@ -10,11 +12,19 @@ export default function Home() {
         of Jesus Christ of Latter Day Saints
       </em>
       <h3 className={styles['home-text']}>Quick Links</h3>
-      <button>View our ward program</button>
-      <button>Action 2</button>
-      <button>Action 3</button>
-      <button>Action 4</button>
-      <button>Action 5</button>
+      <div className={styles['quick-links']}>
+        {quickLinks.map((link, index) => {
+          if (link.type =='internal'){
+            return (
+              <Link href={link.content} key={index}>{link.name}</Link>
+            )
+          } else {
+            return (
+              <a href={link.content} key={index} target='_blank' rel='noreferrer'>{link.name}</a>
+            );
+          }
+        })}
+      </div>
     </div>
   );
 }
