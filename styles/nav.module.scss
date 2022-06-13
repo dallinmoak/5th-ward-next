@@ -15,8 +15,9 @@ nav.main-nav {
       align-self: flex-end;
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
+      
     }
     .nav-title {
       margin-left: 2em;
@@ -85,6 +86,9 @@ a.nav-link,
       &.collapsed {
         margin: 0 1em 0 0;
       }
+    }
+    .nav-title-wrapper{
+      width:100%;
     }
     .nav-list-container {
       display: flex;
