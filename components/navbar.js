@@ -29,8 +29,8 @@ export default function navbar(){
     <nav className={styles['main-nav']}>
       <div className={styles['nav-inner']}>
         <div className={styles['nav-title-wrapper']}>
-          <div className={styles['nav-title']} onClick={()=> toggleCollapse()}>
-            <h1>
+          <div className={styles['nav-title']}>
+            <h1 onClick={()=> setCollapseButton('collapsed')}>
               <Link href="/">
                 <a>El Paso 5th Ward</a>
               </Link>
