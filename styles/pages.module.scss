@@ -1,0 +1,23 @@
+@import 'variables';
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1em 0;
+  em{
+    font-size: 0.9em;
+  }
+  
+  h1,h2,h3,p,em{
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+  }
+  .bottom-margin{
+    margin-bottom: 1em;
+  }
+  .ss-widget{
+    border: none;
+  }
+}
