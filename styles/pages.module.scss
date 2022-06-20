@@ -17,8 +17,23 @@
   .bottom-margin{
     margin-bottom: 1em;
   }
-  .ss-widget{
-    border: none;
+  .widget-container{
+    display: flex;
+    align-items: flex-start;
     width: 100%;
+    max-width: 30rem;
+    margin-right: 1rem;
+    .refresh{
+      cursor: pointer;
+      &:active{
+        transform: rotate(-360deg);
+        transition: transform .2s;
+        cursor: wait;
+      }
+    }
+    .ss-widget{
+      border: none;
+      width: 100%;
+    }
   }
 }
