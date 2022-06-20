@@ -1,6 +1,6 @@
 import styles from '../styles/pages.module.scss'
 import colors from '../styles/exports.module.scss'
-import Refresh from './refresh';
+import Refresh from './refresh'; //test
 
 import {useState} from 'react';
 
