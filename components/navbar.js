@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/nav.module.scss';
+import navList from '../common/nav-list';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -9,18 +10,7 @@ export default function navbar(){
 
   const [collapseState, setCollapseButton ] = useState('collapsed');
 
-  const navList = [
-    {name:'Home', route:'/'},
-    {name:'Elder\'s quorum', route:'/elders-quorum'},
-    {name:'Relief Society', route: '/relief-society'},
-    {name:'Bishopric', route: '/bishopric'},
-    {name:'Calendar', route: '/calendar'},
-    {name:'Young Men', route: '/young-men'},
-    {name:'Young Women', route: '/young-women'},
-    {name:'Sunday School', route: '/sunday-school'},
-    {name:'Primary', route: '/primary'},
-    {name: 'Missionaries', route: '/missionaries'}
-  ];
+
   function toggleCollapse(){
     setCollapseButton( collapseState=='collapsed' ? 'expanded': 'collapsed');
   }
