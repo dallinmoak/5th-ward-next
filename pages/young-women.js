@@ -13,17 +13,19 @@ export default function YoungWomen() {
   return(
     <div className={styles['container']}>
       <PageHead nav={nav}/>
-      <h1>{nav.name} </h1>
+      <h1>{nav.name}</h1>
       {messages.map((message, index) => {
         return (
-          <div key={index}>
+          <div className={styles['message-item']}key={index}>
             {message.image? <Image src={message.image} layout="raw"/>: null}
-            {message.header?<h3>{message.header}</h3>: null}
-            {message.content?<p>{message.content}</p>: null}
+            <div className={styles['message-text']}>
+              {message.header?<h3>{message.header}</h3>: null}
+              {message.content?<p>{message.content}</p>: null}
+            </div>
           </div>
         )
       })}
-      <iframe src={calendarUrl}></iframe>
+      <iframe className={styles['calendar-widget']} src={calendarUrl}></iframe>
     </div>
   );
 }
