@@ -37,16 +37,25 @@
   }
   .message-item{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 0 1.5rem;
-    img{
-      max-height: 70vh;
+    @media screen and (min-width: 1121px){
+      flex-direction: row;
+    }
+    .img-container{
+      order: 2;
+      @media screen and (min-width: 1121px){
+        order: 1;
+        flex-grow: 2;
+      }
     }
     .message-text{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       margin: 0 0.75rem;
+      order: 1;
+      @media screen and (min-width: 1121px){
+        order: 2;
+        flex-shrink: 5;
+      }
     }
   }
   .calendar-widget{
