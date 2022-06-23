@@ -9,7 +9,6 @@
   em{
     font-size: 0.9em;
   }
-  
   h1,h2,h3,p,em{
     margin-block-start: 0.2em;
     margin-block-end: 0.2em;
@@ -35,5 +34,34 @@
       border: none;
       width: 100%;
     }
+  }
+  .message-item{
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.5rem;
+    @media screen and (min-width: 1121px){
+      flex-direction: row;
+    }
+    .img-container{
+      order: 2;
+      @media screen and (min-width: 1121px){
+        order: 1;
+        flex-grow: 2;
+      }
+    }
+    .message-text{
+      margin: 0 0.75rem;
+      order: 1;
+      @media screen and (min-width: 1121px){
+        order: 2;
+        flex-shrink: 5;
+      }
+    }
+  }
+  .calendar-widget{
+    width: 100%;
+    height: 30em;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    border: none;
   }
 }

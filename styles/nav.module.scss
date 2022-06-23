@@ -6,6 +6,7 @@ nav.main-nav {
   position: sticky;
   top: 0;
   border-bottom: 3px solid $mid-blue;
+  z-index: 1;
   .nav-inner {
     display: flex;
     flex-direction: row;
