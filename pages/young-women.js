@@ -1,32 +1,20 @@
-import navItem from '../common/nav-item';
 import styles from '../styles/pages.module.scss';
+
+import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
+
 import calendarUrl from '../common/calendar';
-import Image from 'next/image';
-import bom60 from '../public/bom60.png';
+import PageMessage from '../components/page-message';
+import messages from '../common/page-messages';
+
 
 export default function YoungWomen() {
   const nav = navItem('Young Women');
-  const messages = [
-    {header: "Book of Mormon in 60 Days",content:"The youth of our ward would like to invite you to join in on their Book of Mormon 60 day challenge for June and July! Many of them also committed to taking a book of Mormon, writing their testimony in it and giving it to a friend to join them in this challenge. They want to extend this invitation to you as well! The sister missionaries have a whole box of Book of Mormons! Lets all do out part to gather Israel!", image: bom60}
-  ]
   return(
     <div className={styles['container']}>
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
-      {messages.map((message, index) => {
-        return (
-          <div className={styles['message-item']}key={index}>
-            <div className={styles['img-container']}>
-              {message.image? <Image src={message.image}/>: null}
-            </div>
-            <div className={styles['message-text']}>
-              {message.header?<h3>{message.header}</h3>: null}
-              {message.content?<p>{message.content}</p>: null}
-            </div>
-          </div>
-        )
-      })}
+      <PageMessage messages={messages}/>
       <iframe className={styles['calendar-widget']} src={calendarUrl}></iframe>
     </div>
   );
