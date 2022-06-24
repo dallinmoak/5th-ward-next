@@ -12,8 +12,8 @@ export default function PageMessage(props) {
             </div>
             <div className={styles['message-text']}>
               {message.header?<h3>{message.header}</h3>: null}
-              {message.content? message.content.map(contentItem => {
-                return(<p>{contentItem}</p>);
+              {message.content? message.content.map((contentItem, i) => {
+                return(<p key={i}>{contentItem}</p>);
               }): null}
             </div>
           </div>
