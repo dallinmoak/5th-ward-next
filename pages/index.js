@@ -1,4 +1,5 @@
 import styles from '../styles/home.module.scss';
+import pageStyles from '../styles/pages.module.scss';
 import Link from 'next/link';
 
 import quickLinks from '../common/quick-links';
@@ -15,7 +16,7 @@ export default function Home() {
         of Jesus Christ of Latter Day Saints
       </em>
       <h3 className={styles['home-text']}>Quick Links</h3>
-      <div className={styles['quick-links']}>
+      <div className={pageStyles['quick-links']}>
         {quickLinks.map((link, index) => {
           if (link.type =='internal'){
             return (

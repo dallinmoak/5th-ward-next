@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import 'variables';
 
 .container{
@@ -12,6 +13,14 @@
   h1,h2,h3,p,em{
     margin-block-start: 0.2em;
     margin-block-end: 0.2em;
+  }
+  a.message-link{
+    color: $mid-blue;
+    text-decoration: underline;
+    &:hover{
+      color: color.adjust($mid-blue, $lightness: -20%);
+      text-shadow: 0px 0px 0.5em  color.adjust($dark-black, $alpha: -0.9);;
+    }
   }
   .bottom-margin{
     margin-bottom: 1em;
@@ -63,5 +72,25 @@
     height: 30em;
     padding: 1.5rem 1.5rem 0 1.5rem;
     border: none;
+  }
+}
+
+.quick-links{
+  display:flex;
+  flex-direction: column;
+  a {
+    text-decoration: none;
+    font-family: inherit;
+    margin-bottom: 1.25em;
+    padding: 0.5em;
+    font-size: 1.15em;
+    border-radius: 0.8em;
+    border: 1px solid $mid-blue;
+    background-color: $dark-blue;
+    color: $white;
+    &:hover{
+      color: $white;
+      background-color: color.adjust($dark-blue, $lightness: -10%);
+    }
   }
 }
