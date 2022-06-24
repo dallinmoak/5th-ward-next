@@ -9,18 +9,4 @@ div.container {
   h1 {
     font-size: 1.8em;
   }
-  div.quick-links{
-    display:flex;
-    flex-direction: column;
-    a {
-      font-family: inherit;
-      margin-bottom: 1.25em;
-      padding: 0.5em;
-      font-size: 1.15em;
-      border-radius: 0.8em;
-      border: 1px solid $mid-blue;
-      background-color: $dark-blue;
-      color: $white;
-    }
-  }
 }

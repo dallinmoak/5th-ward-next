@@ -20,7 +20,7 @@ export default function YoungMen() {
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
       <PageMessage messages={myMessages}/>
-      <iframe className={styles['calendar-widget']} src={calendarUrl}/>
+      <iframe className={styles['calendar-widget']} src={calendarUrl('ym')}/>
     </div>
   );
 }

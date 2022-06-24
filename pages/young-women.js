@@ -10,6 +10,7 @@ import messages from '../common/page-messages';
 
 export default function YoungWomen() {
   const nav = navItem('Young Women');
+  console.log(calendarUrl('yw'));
   let myMessages = [];
   messages.map(message => {
     if(message.pages.includes(nav.name)){
@@ -21,7 +22,7 @@ export default function YoungWomen() {
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
       <PageMessage messages={myMessages}/>
-      <iframe className={styles['calendar-widget']} src={calendarUrl}></iframe>
+      <iframe className={styles['calendar-widget']} src={calendarUrl('yw')}></iframe>
     </div>
   );
 }
