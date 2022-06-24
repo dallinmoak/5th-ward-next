@@ -9,11 +9,17 @@ import messages from '../common/page-messages';
 
 export default function YoungMen() {
   const nav = navItem('Young Men');
+  let myMessages = [];
+  messages.map(message => {
+    if(message.pages.includes(nav.name)){
+      myMessages.push(message);
+    }
+  });
   return(
     <div className={styles['container']}>
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
-      <PageMessage messages={messages}/>
+      <PageMessage messages={myMessages}/>
       <iframe className={styles['calendar-widget']} src={calendarUrl}/>
     </div>
   );
