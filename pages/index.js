@@ -1,14 +1,17 @@
-import Head from 'next/head';
 import styles from '../styles/home.module.scss';
 import Link from 'next/link';
+
 import quickLinks from '../common/quick-links';
+import navItem from '../common/nav-item';
+import PageHead from '../components/page-head';
 
 export default function Home() {
   return (
     <div className={styles['container']}>
-      <h1 className={styles['home-text']}> Welcome to El Paso 5th ward</h1>
+      <PageHead nav={navItem("Home")}/>
+      <h1 className={styles['home-text']}> Welcome to El Paso 5th Ward</h1>
       <em className={styles['home-text']}>
-        The El Paso 5th ward of the El Paso Mount Franklin Stake of the Church
+        The El Paso 5th Ward of the El Paso Mount Franklin Stake of the Church
         of Jesus Christ of Latter Day Saints
       </em>
       <h3 className={styles['home-text']}>Quick Links</h3>

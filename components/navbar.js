@@ -35,13 +35,15 @@ export default function navbar(){
         <div className={styles['nav-list-container']}>
           <ul className={styles['nav-items'] + " " + styles[collapseState]}>
             {navList.map((navItem, index) => {
-              return (
-                <li key={index} onClick={() => toggleCollapse()}>
-                  <Link href={navItem.route}>
-                    <a className={styles['nav-link']}>{navItem.name}</a>
-                  </Link>
-                </li>
-              );
+              if(navItem.navbar){
+                return (
+                  <li key={index} onClick={() => toggleCollapse()}>
+                    <Link href={navItem.route}>
+                      <a className={styles['nav-link']}>{navItem.name}</a>
+                    </Link>
+                  </li>
+                );
+              } else { return null; }
             })}
           </ul>
         </div>
