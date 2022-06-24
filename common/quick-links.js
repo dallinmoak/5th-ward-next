@@ -8,7 +8,7 @@
     content:'https://zoom.us/j/94024744483?pwd=TU9IdW93dkVMUGFYY1VGbEUzTXEydz09',
     type:'external'},
   {
-    name: 'view the ward newsletter',
+    name: 'View the ward newsletter',
     content:'https://drive.google.com/uc?export=view&id=1_YngjUW52VBugM6o58JUw6q_UvQrHLBS',
     type:'external'},
   {
