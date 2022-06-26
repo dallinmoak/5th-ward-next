@@ -7,7 +7,7 @@ const navList = [
   {name:'Young Men', route: '/young-men', navbar: true},
   {name:'Young Women', route: '/young-women', navbar: true},
   {name:'Sunday School', route: '/sunday-school', navbar: true},
-  {name:'Primary', route: '/primary', navbar: false},
+  {name:'Primary', route: '/primary', navbar: true},
   {name: 'Missionaries', route: '/missionaries', navbar: false},
 ];
 
