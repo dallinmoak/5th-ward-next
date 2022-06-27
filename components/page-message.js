@@ -18,9 +18,9 @@ export default function PageMessage(props) {
         console.log("messageItemStyles", messageItemStyles);
         return (
           <div className={messageItemStyles} key={index}>
-            <div className={styles['img-container']}>
-              {message.image? <Image src={message.image} alt={`${message.header}_img`}/>: null}
-            </div>
+            {message.image? <div className={styles['img-container']}>
+              <Image src={message.image} alt={`${message.header}_img`}/>
+            </div>: null}
             <div className={styles['message-text']}>
               {message.header?<h3>{message.header}</h3>: null}
               {message.content? message.content.map((contentItem, i) => {
