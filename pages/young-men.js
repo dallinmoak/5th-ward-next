@@ -3,7 +3,7 @@ import styles from '../styles/pages.module.scss';
 import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
 
-import calendarUrl from '../common/calendar';
+import { calendarUrl } from '../common/calendar';
 import PageMessage from '../components/page-message';
 import messages from '../common/page-messages';
 

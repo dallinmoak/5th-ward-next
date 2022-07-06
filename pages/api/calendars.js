@@ -18,20 +18,15 @@ export default function handler(req, res) {
   if( requestedCals) {
     getCalendars(requestedCals)
     .then(calendars => {
-      console.log('sucessful request for: ', requestedCals);
-      console.log('calendars to be added to the response:')
-      calendars.forEach(calendar => {
-        console.log(`${calendar.vcalendar['WR-CALNAME']} - ${calendar.vcalendar.prodid}`);
-      })
-      res.status(200).send({ calendars });
+      res.status(200).json(calendars);
     })
     .catch(error => {
       console.log('failed request: ', requestedCals);
-      res.status(500).send({ error })
+      res.status(500).json({ error })
     })
   } else {
     console.log('no cal request: ', requestedCals);
-    res.status(400).send({ error: "no calendars" })
+    res.status(400).json({ error: "no calendars" })
   }
 }
 

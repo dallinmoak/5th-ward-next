@@ -2,44 +2,63 @@ import styles from '../styles/pages.module.scss'
 import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import Link from 'next/link';
-import calendarUrl from '../common/calendar';
+import {calendarUrl, getCalIds} from '../common/calendar';
 
 export default function Calendar() {
 
-  const [ cal, setCal ] = useState();
+  const [ cals, setCals ] = useState([]);
 
-  const calsToInclude = [
-    'ep5thwardyouth%40gmail.com',
-    // '54ak8d4d51nm0hk44u3e3f501c%40group.calendar.google.com',
-  ]
+  const calsToInclude = getCalIds(['youth','deacons','teachers','preists','yw12_13','yw14_18','youngMen','youngWomen'])
+  .map( id => { return Buffer.from(id, 'base64').toString('ascii')});
+
   const nav = navItem("Calendar")
   function getCals(ids){
-    const cals = ids.join(',');
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch(`http://localhost:3000//api/calendars?calendars=${cals}`, requestOptions)
-    .then(response => response.text())
+    fetch(`http://localhost:3000//api/calendars?calendars=${ids.join(',')}`)
+    .then(response => response.json())
     .then(result => {
-      // console.log("results:", result);
-      setCal(result);
+      let calendars = [];
+      Object.values(result).forEach( calendar => {
+        let events = [];
+        const vcal = calendar.vcalendar;
+        Object.values(calendar).forEach( calItem => {
+          if(calItem.type == "VEVENT"){
+            events.push(calItem);
+          }
+        })
+        calendars.push({events: events, vcal: vcal});
+      })
+      setCals(calendars);
     })
     .catch(error => {
       console.log('error', error)
     });
   }
+
+  useEffect(()=>{
+    getCals(calsToInclude);
+  },[])
+
   return (
     <div className={styles['container']}>
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
       <p className={styles['bottom-margin']}>
-        <button onClick={() => {getCals(calsToInclude)}}>getCals</button>
-        {/* {cal? cal : null} */}
+        {/* <button onClick={() => {getCals(calsToInclude)}}>getCals</button> */}
+        {/* {cals.map( calendar => {
+          return (
+            <div>
+              <h2>calendar: <em>{calendar.vcal['WR-CALNAME']}</em></h2>
+              <h4>Events:</h4>
+              {calendar.events.map( event => {
+                return(<p>{event.summary}: {event.description} - {event.start}</p>)
+              })}
+            </div>
+          )
+        })} */}
+        
       </p>
       <p className={styles['bottom-margin']}>
         The official ward calendar is available at <a className={styles['message-link']} href="https://www.churchofjesuschrist.org" target="_blank" rel="noreferrer">churchofjesuschrist.org</a>, but you can also view the youth calendars on the <Link className={styles['message-link']} href={navItem("Young Men").route}>Young Men</Link> and <Link className={styles['message-link']} href={navItem("Young Women").route}>Young Women</Link> pages.
