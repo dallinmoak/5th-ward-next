@@ -1,14 +1,7 @@
-// import { useState } from 'react';
 import { useEffect } from 'react';
 
 export default function ShowCalendars(props) {
-  
-  // const [ includeList, setIncludeList ] = useState(props.includeList);
-
-  // function sendIncludeList(list){
-  //   setIncludeList(list);
-  // }
-  useEffect(()=> {console.log('updated props')},[props.includeList])
+  useEffect(()=> {},[props.includeList])
 
   return(
     <div>
@@ -26,9 +19,7 @@ export default function ShowCalendars(props) {
             let included = false;
             props.includeList.forEach(includeItem => {
               if(includeItem.label == event.calendar['WR-CALNAME']){
-                if(includeItem.included){
-                  included = true;
-                }
+                included = includeItem.included
               }
             })
             
