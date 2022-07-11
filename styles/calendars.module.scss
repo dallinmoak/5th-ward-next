@@ -1,3 +1,45 @@
-.calendar-container{
-  margin: 0px 3em;
+@import 'variables';
+
+@media screen and (max-width: $mobile-width) {
+  .calendar-container{
+    margin: 0px .3em;
+  }
+}
+
+@media screen and (min-width: ($mobile-width + 1px)) {
+  .calendar-container{
+    margin: 0px 3em;
+  }
+}
+
+
+.cal-top-items{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  button{
+    align-self: flex-start;
+  }
+}
+
+.include-list-wrapper{
+  flex-grow: 100;
+  display: flex;
+  justify-content: center;
+  .include-list-container{
+    width: fit-content;
+    text-align: start;
+  }
+}
+
+.calendar-toggler{
+  input,span{
+    cursor: pointer;
+  }
+  svg{
+    height: 1.1em;
+    position: relative;
+    top: 0.2em;
+    margin-right: 0.1em;
+  }
 }

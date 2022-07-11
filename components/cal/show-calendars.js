@@ -5,31 +5,33 @@ export default function ShowCalendars(props) {
 
   return(
     <div>
-      <table style={{border: "1px solid black"}}>
+      <table>
         <thead>
-          <tr style={{border: "1px solid black"}}>
-            <th style={{border: "1px solid black"}}>Calendar</th>
-            <th style={{border: "1px solid black"}}>Date</th>
-            <th style={{border: "1px solid black"}}>Summary</th>
-            <th style={{border: "1px solid black"}}>Description</th>
+          <tr>
+            <th>Calendar</th>
+            <th>Date</th>
+            <th>Summary</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
           {props.events.map( (event, index) => {
             let included = false;
+            let color = '000000';
             props.includeList.forEach(includeItem => {
               if(includeItem.label == event.calendar['WR-CALNAME']){
-                included = includeItem.included
+                included = includeItem.included;
+                color = includeItem.color;
               }
             })
             
             return(
               included ?
-              <tr key={index} style={{border: "1px solid black"}}>
-                <td style={{border: "1px solid black"}}>{event.calendar['WR-CALNAME']}</td>
-                <td style={{border: "1px solid black"}}>{new Intl.DateTimeFormat('en-us', { month: 'short', day: '2-digit', year: 'numeric'}).format(new Date(event.details.start))}</td>
-                <td style={{border: "1px solid black"}}>{event.details.summary}</td>
-                <td style={{border: "1px solid black"}}>{event.details.description}</td>
+              <tr key={index} style={{ backgroundColor: `#${color}`, color: "#fff"}}>
+                <td>{event.calendar['WR-CALNAME']}</td>
+                <td>{new Intl.DateTimeFormat('en-us', { month: 'short', day: '2-digit', year: 'numeric'}).format(new Date(event.details.start))}</td>
+                <td>{event.details.summary}</td>
+                <td>{event.details.description}</td>
               </tr> :
               null
             )

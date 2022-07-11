@@ -3,6 +3,7 @@ import styles from '../../styles/calendars.module.scss';
 import { useState, useEffect } from "react";
 import { calList, calbyLabel } from "../../common/calendar";
 import ShowCalendars from "./show-calendars";
+import ItemToggler from './item-toggler';
 
 export default function GetCalendars(){
 
@@ -50,12 +51,6 @@ export default function GetCalendars(){
     sendIncludeList();
   }
 
-  function showIncludeItem(item, index){
-    return(<div key={index}>
-      {`${item.label}: ${item.included}`}<button onClick={()=>toggleIncludeItem(item)}>toggle</button>
-    </div>);
-  }
-
   useEffect(() => {
     setIncludeList(calList.map(cal =>{
       const b64Id = cal.id;
@@ -63,17 +58,31 @@ export default function GetCalendars(){
       return {
         label: cal.label,
         included: true,
-        id: id
+        id: id,
+        color: cal.color
       }
     }))
     getCals(calsToInclude);
   },[])
-  useEffect(() =>{console.log('updated include List')},[includeList])
+  useEffect(() =>{},[includeList])
 
   return(
     <div className={styles["calendar-container"]}>
-      {includeList.map((item, index) => {return showIncludeItem(item, index)} )}
-      {<button onClick={()=> getCals(calsToInclude)}>refresh calendars</button>}
+      <div className={styles['cal-top-items']}>
+        <div className={styles['include-list-wrapper']}>
+          <div className={styles['include-list-container']}>
+            <h3>Calendars to show:</h3>
+            {includeList.map((item, index) => { 
+              return(<ItemToggler
+                key={index}
+                toggleItem={item}
+                toggler={toggleIncludeItem}
+              />)
+            })}
+          </div>
+        </div>
+        {<button onClick={()=> getCals(calsToInclude)}>refresh calendars</button>}
+      </div>
       <ShowCalendars events={events} includeList={includeList} sendIncludeList={sendIncludeList}/>
     </div>
   )
