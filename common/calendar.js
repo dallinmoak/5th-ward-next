@@ -1,13 +1,21 @@
-const calList = [
-  { name: 'youth', id: 'ZXA1dGh3YXJkeW91dGhAZ21haWwuY29t', color: '039BE5', type: ['all']},
-  { name: 'deacons', id: 'aTV2ZG9yMmJhbWJvcmZuNWlrY3VwYXQ2bWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
-  { name: 'teachers', id: 'dnF1OTlhdHVuYTE5NjFqMG1vNWZhdjg3cWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
-  { name: 'preists', id: 'aDNiYXQ0ZzRzbDFxMTJjam04MmhqczNuNzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
-  { name: 'yw12_13', id: 'aTRjbWQwbmc2ZDBiMWlkYXFqMDNtYzNvZm9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '0B8043', types: ['all', 'yw']},
-  { name: 'yw14_18', id: 'NzUyNTR0MDNzN2hnanZncThlb3RwamZjaDRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '0B8043', types: ['all', 'yw']},
-  { name: 'youngMen', id: 'b3Bsamc2YXE3MXM0dXE5ZGtvdXZvb3M2NTRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
-  { name: 'youngWomen', id: 'NTRhazhkNGQ1MW5tMGhrNDR1M2UzZjUwMWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '0B8043', types: ['all', 'yw']},
+export const calList = [
+  { name: 'youth', id: 'ZXA1dGh3YXJkeW91dGhAZ21haWwuY29t', label: 'Youth', color: '039BE5', type: ['all']},
+  { name: 'deacons', id: 'aTV2ZG9yMmJhbWJvcmZuNWlrY3VwYXQ2bWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Deacons', color: '3F51B5', types: ['all', 'ym']},
+  { name: 'teachers', id: 'dnF1OTlhdHVuYTE5NjFqMG1vNWZhdjg3cWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Teachers', color: '3F51B5', types: ['all', 'ym']},
+  { name: 'preists', id: 'aDNiYXQ0ZzRzbDFxMTJjam04MmhqczNuNzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Preists', color: '3F51B5', types: ['all', 'ym']},
+  { name: 'yw12_13', id: 'aTRjbWQwbmc2ZDBiMWlkYXFqMDNtYzNvZm9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'YW 12-13', color: '0B8043', types: ['all', 'yw']},
+  { name: 'yw14_18', id: 'NzUyNTR0MDNzN2hnanZncThlb3RwamZjaDRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'YW 14-18', color: '0B8043', types: ['all', 'yw']},
+  { name: 'youngMen', id: 'b3Bsamc2YXE3MXM0dXE5ZGtvdXZvb3M2NTRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Young Men', color: '3F51B5', types: ['all', 'ym']},
+  { name: 'youngWomen', id: 'NTRhazhkNGQ1MW5tMGhrNDR1M2UzZjUwMWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Young Women', color: '0B8043', types: ['all', 'yw']},
 ];
+
+export function calbyLabel(label){
+  let outCal = {message: 'calendar not found'};
+  calList.forEach(item => {
+    if(item.label == label){outCal = item}
+  })
+  return outCal;
+}
 
 export function getCalIds(calNames) {
   let ids = [];
