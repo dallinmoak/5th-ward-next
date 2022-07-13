@@ -3,7 +3,10 @@ import styles from '../../styles/calendars.module.scss';
 import { useState, useEffect } from "react";
 import { calList, calbyLabel } from "../../common/calendar";
 import ShowCalendars from "./show-calendars";
-import ItemToggler from './item-toggler';
+import ItemList from './item-list';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRotateRight as refresh } from '@fortawesome/free-solid-svg-icons';
 
 export default function GetCalendars(){
 
@@ -70,21 +73,28 @@ export default function GetCalendars(){
     <div className={styles["calendar-container"]}>
       <div className={styles['cal-top-items']}>
         <div className={styles['include-list-wrapper']}>
-          <div className={styles['include-list-container']}>
-            <h3>Calendars to show:</h3>
-            {includeList.map((item, index) => { 
-              return(<ItemToggler
-                key={index}
-                toggleItem={item}
-                toggler={toggleIncludeItem}
-              />)
-            })}
-          </div>
+          <ItemList includeList={includeList} toggleIncludeItem={toggleIncludeItem}/>
         </div>
-        {<button onClick={()=> getCals(calsToInclude)}>refresh calendars</button>}
+        <div className={styles['refresh-icon']} onClick={()=> getCals(calsToInclude)}>
+          <FontAwesomeIcon icon={refresh}/>
+        </div>
       </div>
       <ShowCalendars events={events} includeList={includeList} sendIncludeList={sendIncludeList}/>
     </div>
   )
 
 }
+
+//datetype: 'date':'date-time'
+//start: '[YYYY]-[MM]-[DD]T[HH]:[MM]:[ss].[SSS]Z'
+//end: '[YYYY]-[MM]-[DD]T[HH]:[MM]:[ss].[SSS]Z'
+//summary: string
+//details: string
+//location: string
+
+// datetype  | start & end    | Event type
+// ----------|----------------|---------------
+// date      | same day       | all day event
+// date      | different days | multi-day event
+// date-time | same day       | regular event
+// date-time | different days | multi-day event

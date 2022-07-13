@@ -10,13 +10,11 @@ export default function ItemToggler(props){
   }
   return(
     <div className={styles['calendar-toggler']}>
-      {/* <input type="checkbox" onClick={()=>toggleIncludeItem(item)} checked={item.included}/> */}
       <span onClick={()=>toggleIncludeItem(item)}>
         <FontAwesomeIcon 
           icon={item.included? on : off}
           style={{color: item.color}}
         />
-        {/* <FontAwesomeIcon icon='fa-solid fa-toogle-off'/> */}
         {`${item.label}`}
       </span>
     </div>
