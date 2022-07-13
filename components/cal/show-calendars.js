@@ -1,3 +1,5 @@
+import styles from '../../styles/calendars.module.scss';
+
 import { useEffect } from 'react';
 
 export default function ShowCalendars(props) {
@@ -39,22 +41,46 @@ export default function ShowCalendars(props) {
     let startTime = new Intl.DateTimeFormat('en-us', timeformat).format(new Date(event.details.start));
     let allDay = event.details.datetype == 'date' ? true: false;
     return(
-      <div key={index} style={{ backgroundColor: `#${event.color}`, color: "#fff"}}>
-        {allDay ? 'All day' : startTime}----{summary}{description? "-"+description:''}{location? "@ "+location:''}------{calendar}
+      <div key={index} style={{ backgroundColor: `#${event.color}`, color: "#fff"}} className={styles['event-item']}>
+        <div>{allDay ? 'All day' : startTime}</div>
+        <div>
+          <div className={styles['event-summary']}>{summary}</div>
+          {description?
+            <div className={styles['event-description']}>{description}</div> :
+            null
+          }
+          {location? 
+            <div className={styles['event-location']}>{location}</div>:
+            null
+          }
+        </div>
+        <div className={styles['event-calendar']}>{calendar}</div>
       </div>
     )
   }
 
   function printDate(date, index){
     let currentDate = new Date(date.date);
-    let format = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'}
+    let format = { weekday: 'short'}
+    let format2 = { month: 'short', day: 'numeric' }
     let dateFormatted = new Intl.DateTimeFormat('en-us', format).format(currentDate);
+    let dateFormatted2 = new Intl.DateTimeFormat('en-us', format2).format(currentDate);
+
     return(
-      <div key={index}>
-        <div>{dateFormatted}</div>
-        {date.events.map((event, index) =>{
-          return printEvent(event, index);
-        })}
+      <div key={index} className={styles['date-item-wrapper']}>
+        <div className={styles['date-section']}>
+          <div>
+            {dateFormatted}
+          </div>
+          <div className={styles['date-month']}>
+            {dateFormatted2}
+          </div>
+        </div>
+        <div className={styles['event-items']}>
+          {date.events.map((event, index) =>{
+            return printEvent(event, index);
+          })}
+        </div>
       </div>
     )
   }
@@ -70,7 +96,7 @@ export default function ShowCalendars(props) {
   }
 
   return(
-    <div>
+    <div className={styles['calendar-items']}>
       {printAllDates()}
     </div>
   )
