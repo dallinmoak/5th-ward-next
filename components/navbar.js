@@ -6,10 +6,14 @@ import navList from '../common/nav-list';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-export default function navbar(){
+import { useRouter as router } from 'next/router';
+import ItemList from '../components/cal/item-list';
 
+export default function navbar(props){
   const [collapseState, setCollapseButton ] = useState('collapsed');
 
+  const calRoutes = ['/calendar'];
+  const showCal = calRoutes.includes(router().pathname);
 
   function toggleCollapse(){
     setCollapseButton( collapseState=='collapsed' ? 'expanded': 'collapsed');
@@ -48,6 +52,10 @@ export default function navbar(){
           </ul>
         </div>
       </div>
+      {showCal ? <ItemList
+        includeList={props.includeList}
+        updateIncludeList={props.updateIncludeList}
+      /> : null}
     </nav>
   )
 }

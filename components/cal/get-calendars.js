@@ -1,23 +1,18 @@
 import styles from '../../styles/calendars.module.scss';
 
 import { useState, useEffect } from "react";
-import { calList, calbyLabel } from "../../common/calendar";
 import ShowCalendars from "./show-calendars";
-import ItemList from './item-list';
+
+import manageIncludeList from './manage-include-list';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRotateRight as refresh } from '@fortawesome/free-solid-svg-icons';
 
-export default function GetCalendars(){
+export default function GetCalendars(props){
 
   const [ events, setEvents ] = useState([]);
-  const [ includeList, setIncludeList ] = useState([]);
 
-  const calsToInclude = calList
-  .map(cal => {
-    const b64Id = cal.id;
-    return Buffer.from(b64Id?b64Id:'', 'base64').toString('ascii')
-  })
+  const calsToFetch = manageIncludeList.getCalsFetch();
 
   function getCals(ids){
     fetch(`/api/calendars?calendars=${ids.join(',')}`)
@@ -39,47 +34,16 @@ export default function GetCalendars(){
     .catch(e => console.log('error', e));
   }
 
-  function sendIncludeList(){
-    return includeList;
-  }
-
-  function toggleIncludeItem(toggleItem){
-    let newItemList = includeList.map(item => {
-      if(item.label == toggleItem.label){
-        item.included = !item.included;
-      }
-      return item;
-    })
-    setIncludeList(newItemList);
-    sendIncludeList();
-  }
-
   useEffect(() => {
-    setIncludeList(calList.map(cal =>{
-      const b64Id = cal.id;
-      const id = Buffer.from(b64Id?b64Id:'', 'base64').toString('ascii')
-      return {
-        label: cal.label,
-        included: true,
-        id: id,
-        color: cal.color
-      }
-    }))
-    getCals(calsToInclude);
+    getCals(calsToFetch);
   },[])
-  useEffect(() =>{},[includeList])
 
   return(
     <div className={styles["calendar-container"]}>
-      <div className={styles['cal-top-items']}>
-        <div className={styles['include-list-wrapper']}>
-          <ItemList includeList={includeList} toggleIncludeItem={toggleIncludeItem}/>
-        </div>
-        <div className={styles['refresh-icon']} onClick={()=> getCals(calsToInclude)}>
-          <FontAwesomeIcon icon={refresh}/>
-        </div>
+      <div className={styles['refresh-icon']} onClick={()=> getCals(calsToFetch)}>
+        <FontAwesomeIcon icon={refresh}/>
       </div>
-      <ShowCalendars events={events} includeList={includeList} sendIncludeList={sendIncludeList}/>
+      <ShowCalendars events={events} includeList={props.includeList}/>
     </div>
   )
 

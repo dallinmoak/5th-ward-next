@@ -88,7 +88,12 @@ export default function ShowCalendars(props) {
   function printAllDates(){
     if(dateList.length>0){
       return dateList.map((date, index) => {
-        return printDate(date,index);
+        return (
+          <div key={index}>
+            {printDate(date,index)}
+            <div className={styles['date-item-divider']}/>
+          </div>
+        )
       });
     } else {
       return "no events to show";

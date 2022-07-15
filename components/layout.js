@@ -1,13 +1,17 @@
 import Navbar from "./navbar"
 import Footer from "./footer"
 
-export default function layout({children}){
+import ItemList from '../components/cal/item-list';
+
+export default function layout(props){
   return(
     <>
-    {/* <h1>test</h1> */}
-      <Navbar/>
+      <Navbar
+        includeList={props.includeList}
+        updateIncludeList={props.updateIncludeList}
+      />
       <main>
-        {children}
+        {props.children}
       </main>
       <Footer />
     </>

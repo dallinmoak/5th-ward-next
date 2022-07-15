@@ -1,18 +1,25 @@
 import '../styles/styles.scss'
 import Layout from '../components/layout'
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+
+import { useState } from 'react';
+
+import manageIncludeList from '../components/cal/manage-include-list';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
+  const [ includeList,  updateIncludeList ] = useState(manageIncludeList.initialIncludeList());
   return(
-    <Layout>
+    <Layout
+      includeList={includeList}
+      updateIncludeList={updateIncludeList}
+    >
       <Head>
-        <title>EP 5th Ward | {router.pathname.replace("/","")}</title>
         <meta name="description" content="El Paso 5th ward website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <Component {...pageProps}
+        includeList={includeList}
+      />
     </Layout>
   )
 }
