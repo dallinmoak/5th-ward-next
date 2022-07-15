@@ -14,7 +14,7 @@ export default function calendarUrl(type){
       break;
   }
   const calList = [
-    { name: 'youth', id: 'ZXA1dGh3YXJkeW91dGhAZ21haWwuY29t', color: '039BE5', type: ['all']},
+    { name: 'youth', id: 'ZXA1dGh3YXJkeW91dGhAZ21haWwuY29t', color: '00c9c9', type: ['all','ym','yw']},
     { name: 'deacons', id: 'aTV2ZG9yMmJhbWJvcmZuNWlrY3VwYXQ2bWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
     { name: 'teachers', id: 'dnF1OTlhdHVuYTE5NjFqMG1vNWZhdjg3cWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
     { name: 'preists', id: 'aDNiYXQ0ZzRzbDFxMTJjam04MmhqczNuNzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', color: '3F51B5', types: ['all', 'ym']},
