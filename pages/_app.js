@@ -8,10 +8,12 @@ import manageIncludeList from '../components/cal/manage-include-list';
 
 function MyApp({ Component, pageProps }) {
   const [ includeList,  updateIncludeList ] = useState(manageIncludeList.initialIncludeList());
+  const [ modal, setModal ] = useState(false);
   return(
     <Layout
       includeList={includeList}
       updateIncludeList={updateIncludeList}
+      modal={modal}
     >
       <Head>
         <meta name="description" content="El Paso 5th ward website" />
@@ -19,6 +21,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Component {...pageProps}
         includeList={includeList}
+        setModal={setModal}
       />
     </Layout>
   )

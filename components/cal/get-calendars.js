@@ -41,9 +41,13 @@ export default function GetCalendars(props){
   return(
     <div className={styles["calendar-container"]}>
       <div className={styles['refresh-icon']} onClick={()=> getCals(calsToFetch)}>
-        <FontAwesomeIcon icon={refresh}/>
+        Click to refresh
+        <FontAwesomeIcon 
+          icon={refresh}
+          alt='refresh'
+        />
       </div>
-      <ShowCalendars events={events} includeList={props.includeList}/>
+      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>
     </div>
   )
 

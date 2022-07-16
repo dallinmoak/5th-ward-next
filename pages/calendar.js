@@ -14,7 +14,7 @@ export default function Calendar(props) {
   return (
     <div className={styles['container']}>
       <PageHead nav={nav}/>
-      <GetCalendars calNames={calNames} includeList={props.includeList}/>
+      <GetCalendars calNames={calNames} includeList={props.includeList} setModal={props.setModal}/>
       <p className={styles['bottom-margin']}>
         The official ward calendar is available at <a className={styles['message-link']} href="https://www.churchofjesuschrist.org" target="_blank" rel="noreferrer">churchofjesuschrist.org</a>, but you can also view the youth calendars on the <Link className={styles['message-link']} href={navItem("Young Men").route}>Young Men</Link> and <Link className={styles['message-link']} href={navItem("Young Women").route}>Young Women</Link> pages.
       </p>

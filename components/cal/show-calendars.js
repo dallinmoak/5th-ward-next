@@ -2,7 +2,10 @@ import styles from '../../styles/calendars.module.scss';
 
 import { useEffect } from 'react';
 
+import EventDetails from './event-details'
+
 export default function ShowCalendars(props) {
+
   useEffect(()=> {},[props.includeList])
 
   let detailedEvents = props.events.map((event, index)=> {
@@ -37,6 +40,13 @@ export default function ShowCalendars(props) {
     let description = event.details.description;
     let location = event.details.location;
     let calendar = event.calendar["WR-CALNAME"];
+    let calShort = calendar;
+    if(event.calendar['WR-CALNAME'] == "Young Women"){
+      calShort = "YW";
+    }
+    if(event.calendar['WR-CALNAME'] == "Young Men"){
+      calShort = "YM";
+    }
     let timeformat = {hour: 'numeric', minute: 'numeric', hour12: true }
     let startTime = new Intl.DateTimeFormat('en-us', timeformat).format(new Date(event.details.start));
     let allDay = event.details.datetype == 'date' ? true: false;
@@ -54,7 +64,7 @@ export default function ShowCalendars(props) {
             null
           }
         </div>
-        <div className={styles['event-calendar']}>{calendar}</div>
+        <div className={styles['event-calendar']}>{calShort}</div>
       </div>
     )
   }
@@ -78,7 +88,7 @@ export default function ShowCalendars(props) {
         </div>
         <div className={styles['event-items']}>
           {date.events.map((event, index) =>{
-            return printEvent(event, index);
+            return <EventDetails event={event} key={index} setModal={props.setModal}/>
           })}
         </div>
       </div>

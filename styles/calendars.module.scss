@@ -27,9 +27,10 @@
   width: 100%;
 }
 .refresh-icon{
+  display: flex;
+  justify-content: flex-end;
   svg{
     height: 1em;
-    margin-right: 1em;
     align-self: flex-start;
     &:active{
       transform: rotate(360deg);
@@ -127,6 +128,43 @@
         font-size: 0.83em;
         font-style: italic;
       }
+      .event-calendar{
+        text-align: end;
+        padding-right: 5px;
+      }
     }
   }
 }
+
+.event-modal{
+  z-index: 100;
+  position: absolute;
+  top:0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #00000088;
+  backdrop-filter: blur(6px);
+  .event-modal-inner{
+    z-index: 50;
+    width: 70vw;
+    height: 70vh;
+    margin: 20vh 15vw 10vh 15vw;
+    background-color: white;
+    border-radius: .5em;
+    border: 1px solid $white;
+    // box-shadow: 0px 1px 5px 0px #000000bb;
+    .modal-content{
+      padding: 1em;
+      .modal-header{
+        display: flex;
+        justify-content: space-between;
+        .modal-close>svg{
+          color: $white;
+          height: 1.5em;
+        }
+      }
+    }
+  }
+}
+
