@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCircleXmark as close } from '@fortawesome/free-solid-svg-icons';
-import { faCircleXmark as close } from "@fortawesome/free-regular-svg-icons";
+import { faXmark as close } from "@fortawesome/free-solid-svg-icons";
 
 export default function EventDetailsModal(props){
 
