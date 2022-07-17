@@ -13,7 +13,7 @@ import ItemList from '../components/cal/item-list';
 export default function navbar(props){
   const [collapseState, setCollapseButton ] = useState('collapsed');
 
-  const calRoutes = [navItem("Ward Calendar").route];
+  const calRoutes = [navItem("Calendar").route];
   const showCal = calRoutes.includes(router().pathname);
 
   function toggleCollapse(){

@@ -2,21 +2,19 @@ import styles from '../styles/pages.module.scss'
 import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
 
-import Link from 'next/link';
+import GetCalendars from '../components/cal/get-calendars';
 
-export default function Calendar() {
-  const nav = navItem("Calendar Portal")
+export default function Calendar(props) {
+  const nav = navItem("Calendar")
+  const calNames = ['Youth','Deacons','Teachers','Preists','YW 12-13','YW 14-18','Young Men','Young Women'];
 
   return (
     <div className={styles['container']}>
       <PageHead nav={nav}/>
       <p className={[styles['bottom-margin'],styles['message-link-container']].join(' ')}>
-        The official ward calendar is available at <a href="https://www.churchofjesuschrist.org" target="_blank" rel="noreferrer">churchofjesuschrist.org</a>, but you can also view the youth calendars on the <Link href={navItem("Ward Calendar").route}>Ward Calendar</Link> page.
+        The official ward calendar is available at <a href="https://www.churchofjesuschrist.org/calendar" target="_blank" rel="noreferrer">churchofjesuschrist.org</a>.
       </p>
-      <div className={styles['quick-links']}>
-        <a href='https://www.churchofjesuschrist.org/calendar' target="_blank" rel="noreferrer">Official ward calendar</a>
-        <Link href={navItem("Ward Calendar").route}>Unofficial ward calendar</Link>
-      </div>
+      <GetCalendars calNames={calNames} includeList={props.includeList} setModal={props.setModal}/>
     </div>
   );
 }

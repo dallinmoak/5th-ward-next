@@ -9,7 +9,6 @@ const navList = [
   {name:'Sunday School', route: '/sunday-school', navbar: true},
   {name:'Primary', route: '/primary', navbar: true},
   {name: 'Missionaries', route: '/missionaries', navbar: false},
-  {name: 'Ward Calendar', route: '/calendar/agenda', navbar: false }
 ];
 
 export default navList;
