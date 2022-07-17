@@ -32,14 +32,6 @@ export default function GetCalendars(props){
             if(calStart >= weekAgo){
               //only get events 3 months in the future
               if(calStart <= threeMonthsFromNow){
-                if(calItem.summary == "test"){
-                  let zone = "America/Denver"
-                  console.log(`week ago ${zone}`, weekAgo.toLocaleString('en-US', { timeZone: zone }))
-                  console.log(`date ${zone}`, calStart.toLocaleString('en-US', { timeZone: zone }) )
-                  console.log(`3 months out ${zone}`, threeMonthsFromNow.toLocaleString('en-US', { timeZone: zone }))
-                  console.log(calItem);
-                  console.log(calendar.vcalendar);
-                }
                 eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
               }
             }

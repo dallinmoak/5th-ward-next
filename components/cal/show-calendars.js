@@ -10,6 +10,11 @@ export default function ShowCalendars(props) {
 
   let detailedEvents = props.events.map((event, index)=> {
     let includedItem = props.includeList.find(item => item.label == event.calendar['WR-CALNAME']);
+    if(!includedItem){
+      event.color = '#555555';
+      event.index = index;
+      return (event);
+    }
     if(includedItem.included){
       event.color = includedItem.color;
       event.index = index;

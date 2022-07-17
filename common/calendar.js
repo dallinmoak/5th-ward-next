@@ -7,6 +7,7 @@ export const calList = [
   { name: 'preists', id: 'aDNiYXQ0ZzRzbDFxMTJjam04MmhqczNuNzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Preists', color: '0000b3', types: ['all', 'ym']},
   { name: 'teachers', id: 'dnF1OTlhdHVuYTE5NjFqMG1vNWZhdjg3cWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Teachers', color: '3344ff', types: ['all', 'ym']},
   { name: 'deacons', id: 'aTV2ZG9yMmJhbWJvcmZuNWlrY3VwYXQ2bWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Deacons', color: '6680ff', types: ['all', 'ym']},
+  { name: 'ward', id: 'ZXA1dGh3YXJkY2FsQGdtYWlsLmNvbQ', label: '5th Ward', color: '048348', types: ['all']}
 ];
 
 export function calbyLabel(label){
