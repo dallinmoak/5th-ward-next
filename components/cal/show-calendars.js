@@ -19,7 +19,7 @@ export default function ShowCalendars(props) {
 
   let dateList = Array.from(new Set(detailedEvents.map(event => {
     if (event.details.start){
-      return event.details.start.substring(0,10)
+      return event.details.start
     }
   }))).map(item =>{
     return { date: item, events: [] };
@@ -27,7 +27,7 @@ export default function ShowCalendars(props) {
   
 
   detailedEvents.forEach(event => {
-    let targetDate = event.details.start.substring(0,10);
+    let targetDate = event.details.start
     dateList.forEach(dateItem => {
       if(dateItem.date == targetDate){
         dateItem.events.push(event);

@@ -1,16 +1,14 @@
 import styles from '../styles/pages.module.scss';
-
+import Link from 'next/link';
 import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
 
-import { calendarUrl } from '../common/calendar';
 import PageMessage from '../components/page-message';
 import messages from '../common/page-messages';
 
 
 export default function YoungWomen() {
   const nav = navItem('Young Women');
-  console.log(calendarUrl('yw'));
   let myMessages = [];
   messages.map(message => {
     if(message.pages.includes(nav.name)){
@@ -22,7 +20,9 @@ export default function YoungWomen() {
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
       <PageMessage messages={myMessages}/>
-      <iframe className={styles['calendar-widget']} src={calendarUrl('yw')}></iframe>
+      <p className={styles['message-link-container']}>
+        View the young women calendar <Link href={navItem("Ward Calendar").route}>here</Link>!
+      </p>
     </div>
   );
 }

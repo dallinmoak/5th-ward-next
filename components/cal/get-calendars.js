@@ -11,10 +11,12 @@ import { faArrowRotateRight as refresh } from '@fortawesome/free-solid-svg-icons
 export default function GetCalendars(props){
 
   const [ events, setEvents ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   const calsToFetch = manageIncludeList.getCalsFetch();
 
   function getCals(ids){
+    setLoading(true);
     fetch(`/api/calendars?calendars=${ids.join(',')}`)
     .then(response => response.json())
     .then(result => {
@@ -22,7 +24,25 @@ export default function GetCalendars(props){
       Object.values(result).forEach( calendar => {
         Object.values(calendar).forEach( calItem => {
           if(calItem.type == "VEVENT"){
-            eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
+            const calStart = new Date(calItem.start);
+            const now = Date.now();
+            const weekAgo = new Date(now.valueOf()- 604800000);
+            const threeMonthsFromNow = new Date(now.valueOf() + 7890000000);
+            // only get events 1 week in the past
+            if(calStart >= weekAgo){
+              //only get events 3 months in the future
+              if(calStart <= threeMonthsFromNow){
+                if(calItem.summary == "test"){
+                  let zone = "America/Denver"
+                  console.log(`week ago ${zone}`, weekAgo.toLocaleString('en-US', { timeZone: zone }))
+                  console.log(`date ${zone}`, calStart.toLocaleString('en-US', { timeZone: zone }) )
+                  console.log(`3 months out ${zone}`, threeMonthsFromNow.toLocaleString('en-US', { timeZone: zone }))
+                  console.log(calItem);
+                  console.log(calendar.vcalendar);
+                }
+                eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
+              }
+            }
           }
         })
       })
@@ -31,6 +51,7 @@ export default function GetCalendars(props){
       })
       setEvents(sortedEventList);
     })
+    .then(setLoading(false))
     .catch(e => console.log('error', e));
   }
 
@@ -47,7 +68,8 @@ export default function GetCalendars(props){
           alt='refresh'
         />
       </div>
-      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>
+      {loading? <div>loading calendars...</div>:
+      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>}
     </div>
   )
 

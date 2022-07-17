@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/nav.module.scss';
 import navList from '../common/nav-list';
+import navItem from '../common/nav-item';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +13,7 @@ import ItemList from '../components/cal/item-list';
 export default function navbar(props){
   const [collapseState, setCollapseButton ] = useState('collapsed');
 
-  const calRoutes = ['/calendar'];
+  const calRoutes = [navItem("Ward Calendar").route];
   const showCal = calRoutes.includes(router().pathname);
 
   function toggleCollapse(){
