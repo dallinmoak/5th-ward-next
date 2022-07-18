@@ -2,14 +2,19 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/nav.module.scss';
 import navList from '../common/nav-list';
+import navItem from '../common/nav-item';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-export default function navbar(){
+import { useRouter as router } from 'next/router';
+import ItemList from '../components/cal/item-list';
 
+export default function navbar(props){
   const [collapseState, setCollapseButton ] = useState('collapsed');
 
+  const calRoutes = [navItem("Calendar").route];
+  const showCal = calRoutes.includes(router().pathname);
 
   function toggleCollapse(){
     setCollapseButton( collapseState=='collapsed' ? 'expanded': 'collapsed');
@@ -48,6 +53,10 @@ export default function navbar(){
           </ul>
         </div>
       </div>
+      {showCal ? <ItemList
+        includeList={props.includeList}
+        updateIncludeList={props.updateIncludeList}
+      /> : null}
     </nav>
   )
 }

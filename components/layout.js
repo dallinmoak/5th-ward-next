@@ -1,15 +1,18 @@
 import Navbar from "./navbar"
 import Footer from "./footer"
 
-export default function layout({children}){
+export default function layout(props){
+  const styles = props.modal ? { overflow: "hidden", height: "100vh"}:{};
   return(
-    <>
-    {/* <h1>test</h1> */}
-      <Navbar/>
+    <div id='layout' style={styles}>
+      <Navbar
+        includeList={props.includeList}
+        updateIncludeList={props.updateIncludeList}
+      />
       <main>
-        {children}
+        {props.children}
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

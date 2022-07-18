@@ -1,0 +1,203 @@
+@import 'variables';
+
+.calendar-container{
+  width: 100%;
+  max-width: 700px;
+}
+
+@media screen and (max-width: $mobile-width) {
+  .calendar-container{
+    padding: 0px .3em;
+  }
+  .event-modal-inner{
+    margin-top: 50%;
+  }
+}
+
+@media screen and (min-width: ($mobile-width + 1px)) {
+  .calendar-container{
+    padding: 0px 3em;
+  }
+  .event-modal-inner{
+    margin-top: 10%;
+  }
+}
+
+.cal-top-items{
+  color: $dark-black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: .75em 0;
+  background-color: #fff;
+  width: 100%;
+}
+.refresh-icon{
+  display: flex;
+  justify-content: flex-end;
+  svg{
+    height: 1em;
+    align-self: flex-start;
+    &:active{
+      transform: rotate(360deg);
+      transition: transform .2s;
+    }
+  }
+}
+
+.include-list-wrapper{
+  flex-grow: 100;
+  display: flex;
+  justify-content: center;
+  .include-list-container{
+    border: 2px solid $mid-gray;
+    border-radius: .4em;
+    background-color: $extra-light-gray;
+    &.expanded{
+      h3{
+        border-bottom: 2px solid $mid-gray;
+        border-radius: .4em;
+      }
+    }
+    &.collapsed{
+      .include-list{
+        display: none;
+      }
+    }
+    width: fit-content;
+    text-align: start;
+    h3{
+      margin: 0;
+      padding: 3px;
+      border-radius: .4em;
+      background-color: $white;
+      cursor: pointer;
+      svg{
+        height: 1em;
+        position: relative;
+        top: 0.2em;
+      }
+    }
+    .include-list{
+      margin-left: 1em;
+      padding: 0 0 .5em 0;
+    }
+  }
+}
+
+.calendar-toggler{
+  input,span{
+    cursor: pointer;
+  }
+  svg{
+    height: 1.1em;
+    position: relative;
+    top: 0.2em;
+    margin-right: 0.1em;
+  }
+}
+
+.calendar-items{
+  padding-top: 0.5em;
+}
+
+.date-item-divider{
+  width: 100%;
+  height: 1px;
+  background-color: $light-gray;
+  margin: 2px 0;
+}
+
+.date-item-wrapper{
+  display: flex;
+  .date-section{
+    white-space: nowrap;
+    min-width: 3.1em;
+    .date-month{
+      font-size: 0.8em;
+    }
+  }
+  .event-items{
+    flex-grow: 10;
+    .event-item{
+      border-radius: 0.4em;
+      margin-bottom: 0.2em;
+      padding-bottom:  4px;
+      font-size: 0.86em;
+      display: grid;
+      grid-template-columns: 5em 1fr 5em;
+      grid-template-rows: auto;
+      .event-summary{
+        font-weight: bolder;
+      }
+      .event-description,.event-location{
+        font-size: 0.83em;
+        font-style: italic;
+      }
+      .event-calendar{
+        text-align: end;
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+.event-modal{
+  z-index: 100;
+  position: absolute;
+  top:0;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #00000088;
+  backdrop-filter: blur(6px);
+  .event-modal-inner{
+    z-index: 50;
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%;
+    background-color: white;
+    border-radius: .5em;
+    border: 1px solid $white;
+    // box-shadow: 0px 1px 5px 0px #000000bb;
+    .modal-content{
+      padding: 1em;
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      .upper-modal{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3em;
+        
+      }
+      .modal-header{
+        font-size: 2em;
+        border-bottom: 1px solid $white;
+      }
+      .modal-calname>svg{
+        height: 1em;
+        padding-right: 4px;
+      }
+    }
+    .modal-close>svg{
+      color: $white;
+      height: 1.5em;
+    }
+  }
+  .modal-startend{
+    margin-bottom: 1em;
+  }
+  .modal-icon-basic{
+    display: flex;
+    align-items: center;
+    margin-bottom: .5em;
+    svg{
+      height: 1.3em;
+      margin-right: 5px;
+      min-width: 1em;
+    }
+  }
+}
+
