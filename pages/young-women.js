@@ -21,7 +21,7 @@ export default function YoungWomen() {
       <h1>{nav.name}</h1>
       <PageMessage messages={myMessages}/>
       <p className={styles['message-link-container']}>
-        View the young women calendar <Link href={navItem("Ward Calendar").route}>here</Link>!
+        View the young women calendar <Link href={navItem("Calendar").route}>here</Link>!
       </p>
     </div>
   );

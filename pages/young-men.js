@@ -20,7 +20,7 @@ export default function YoungMen() {
       <h1>{nav.name}</h1>
       <PageMessage messages={myMessages}/>
       <p className={styles['message-link-container']}>
-        View the young men calendar <Link href={navItem("Ward Calendar").route}>here</Link>!
+        View the young men calendar <Link href={navItem("Calendar").route}>here</Link>!
       </p>
     </div>
   );
