@@ -44,8 +44,10 @@ export default function EventDetails(props){
         summary={summary}
         description={description}
         location={location}
+        allDay={allDay}
         start={start}
         end={end}
+        calendar={calendar}
       /> : null}
     </div>
   )
