@@ -47,6 +47,8 @@ export default function EventDetails(props){
         allDay={allDay}
         start={start}
         end={end}
+        startRaw={props.event.details.start}
+        endRaw={props.event.details.end}
         calendar={calendar}
       /> : null}
     </div>
