@@ -20,9 +20,10 @@ export default function GetCalendars(props){
     fetch(`/api/calendars?calendars=${ids.join(',')}`)
     .then(response => response.json())
     .then(result => {
-      console.log(result);
+      console.log(result.calendars);
+      console.log(result.tz);
       let eventList = [];
-      Object.values(result).forEach( calendar => {
+      Object.values(result.calendars).forEach( calendar => {
         Object.values(calendar).forEach( calItem => {
           if(calItem.type == "VEVENT"){
             const calStart = new Date(calItem.start);

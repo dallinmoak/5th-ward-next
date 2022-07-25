@@ -1,7 +1,6 @@
 import ical from 'node-ical';
 
 export default function handler(req, res) { 
-
   async function getCalendar(calId){
     return await ical.async.fromURL(`https://calendar.google.com/calendar/ical/${calId}/public/basic.ics`)
   }
@@ -14,11 +13,16 @@ export default function handler(req, res) {
     console.log('CalIds:', calIds)
     return Promise.all(calIds.map(calId => getCalAsync(calId)));
   }
+
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const requestedCals = req.query.calendars.split(',');
   if( requestedCals) {
+    requestedCals.forEach( cal => {
+      console.log(`https://calendar.google.com/calendar/ical/${cal}/public/basic.ics`)
+    })
     getCalendars(requestedCals)
     .then(calendars => {
-      res.status(200).json(calendars);
+      res.status(200).json({calendars: calendars, tz: tz});
     })
     .catch(error => {
       console.log('failed request: ', requestedCals);
