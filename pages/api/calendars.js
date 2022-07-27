@@ -22,6 +22,13 @@ export default function handler(req, res) {
     })
     getCalendars(requestedCals)
     .then(calendars => {
+      calendars.forEach(calendar =>{
+        calendar.forEach(event => {
+          if (event.type == 'VEVENT' ){
+            console.log('stuff');
+          }
+        })
+      })
       res.status(200).json({calendars: calendars, tz: tz});
     })
     .catch(error => {
