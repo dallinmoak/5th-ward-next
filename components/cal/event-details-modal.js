@@ -25,14 +25,6 @@ export default function EventDetailsModal(props){
   const startDate = props.start.toLocaleString('en-US', dateFormat);
   const endDate = endMod.toLocaleString('en-US', dateFormat);
   const multiDay = startDate == endDate ? false : true;
-  console.log('start',props.start)
-  console.log('start raw', props.startRaw)
-  console.log('start alt', new Date(props.startRaw))
-  console.log('end',props.end)
-  console.log('end mod', endMod)  
-  console.log('end Raw', props.endRaw)
-  console.log('end alt', new Date(props.endRaw))
-  console.log('end alt mod', new Date(Date.parse(new Date(props.endRaw)) - 1000))
   function printStartEnd(){
     const dateFormat = { weekday: 'long', month: 'short', day: 'numeric', year: '2-digit'}
     const allFormat = { weekday: 'long', month: 'short', day: 'numeric', year: '2-digit', hour: 'numeric', minute: '2-digit' }

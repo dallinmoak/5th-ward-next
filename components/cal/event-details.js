@@ -23,10 +23,10 @@ export default function EventDetails(props){
     calShort = "YM";
   }
   let timeformat = {hour: 'numeric', minute: 'numeric', hour12: true }
-  let start = new Date(props.event.details.start);
-  let end = new Date(props.event.details.end);
-  let startTime = new Intl.DateTimeFormat('en-us', timeformat).format(start);
   let allDay = props.event.details.datetype == 'date' ? true: false;
+  let start = new Date(allDay ? props.event.details.startDate : props.event.details.start);
+  let end = new Date(allDay ? props.event.details.endDate : props.event.details.end);
+  let startTime = new Intl.DateTimeFormat('en-us', timeformat).format(start);
   let color = props.event.color;
   return(
     <div key={props.index}>
@@ -47,8 +47,6 @@ export default function EventDetails(props){
         allDay={allDay}
         start={start}
         end={end}
-        startRaw={props.event.details.start}
-        endRaw={props.event.details.end}
         calendar={calendar}
       /> : null}
     </div>

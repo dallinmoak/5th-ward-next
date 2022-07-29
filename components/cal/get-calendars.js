@@ -20,8 +20,6 @@ export default function GetCalendars(props){
     fetch(`/api/calendars?calendars=${ids.join(',')}`)
     .then(response => response.json())
     .then(result => {
-      console.log(result.calendars);
-      console.log(result.tz);
       let eventList = [];
       Object.values(result.calendars).forEach( calendar => {
         Object.values(calendar).forEach( calItem => {
