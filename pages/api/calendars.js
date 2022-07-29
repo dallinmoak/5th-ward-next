@@ -27,8 +27,8 @@ export default function handler(req, res) {
           if ( event.type == 'VEVENT'){
             if ( event.datetype == 'date'){
               const dateFormat = date => date.getFullYear().toString() + String(date.getMonth()+1).padStart(2, '0') + String(date.getDate()).padStart(2, '0');
-              event.testStart = dateFormat(new Date(event.start));
-              event.testEnd = dateFormat(new Date(event.end));
+              event.startDate = dateFormat(new Date(event.start));
+              event.endDate = dateFormat(new Date(event.end));
             }
           }
         })
