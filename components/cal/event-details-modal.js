@@ -15,7 +15,7 @@ export default function EventDetailsModal(props){
       props.setShowModal(false);
     }
   };
-
+  
   const customStyle = {
     backgroundColor: `#${props.color? props.color: '000088'}`, 
     color: "#fff"
@@ -25,7 +25,6 @@ export default function EventDetailsModal(props){
   const startDate = props.start.toLocaleString('en-US', dateFormat);
   const endDate = endMod.toLocaleString('en-US', dateFormat);
   const multiDay = startDate == endDate ? false : true;
-
   function printStartEnd(){
     const dateFormat = { weekday: 'long', month: 'short', day: 'numeric', year: '2-digit'}
     const allFormat = { weekday: 'long', month: 'short', day: 'numeric', year: '2-digit', hour: 'numeric', minute: '2-digit' }
@@ -87,3 +86,5 @@ export default function EventDetailsModal(props){
     document.getElementById('layout')
   )
 }
+
+//4djp3q8iuqphbhb2u7rlgnalim

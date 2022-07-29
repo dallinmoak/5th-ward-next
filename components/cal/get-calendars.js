@@ -21,7 +21,7 @@ export default function GetCalendars(props){
     .then(response => response.json())
     .then(result => {
       let eventList = [];
-      Object.values(result).forEach( calendar => {
+      Object.values(result.calendars).forEach( calendar => {
         Object.values(calendar).forEach( calItem => {
           if(calItem.type == "VEVENT"){
             const calStart = new Date(calItem.start);

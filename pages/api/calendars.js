@@ -1,7 +1,6 @@
 import ical from 'node-ical';
 
 export default function handler(req, res) { 
-
   async function getCalendar(calId){
     return await ical.async.fromURL(`https://calendar.google.com/calendar/ical/${calId}/public/basic.ics`)
   }
@@ -11,14 +10,36 @@ export default function handler(req, res) {
   }
 
   async function getCalendars(calIds){
-    console.log('CalIds:', calIds)
+    // console.log('CalIds:', calIds)
     return Promise.all(calIds.map(calId => getCalAsync(calId)));
   }
+
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const requestedCals = req.query.calendars.split(',');
   if( requestedCals) {
+    // requestedCals.forEach( cal => {
+    //   console.log(`https://calendar.google.com/calendar/ical/${cal}/public/basic.ics`)
+    // })
     getCalendars(requestedCals)
     .then(calendars => {
-      res.status(200).json(calendars);
+      calendars.forEach(calendar => {
+        Object.values(calendar).forEach(event => {
+          if ( event.type == 'VEVENT'){
+            if ( event.datetype == 'date'){
+              const dateFormat = date => {
+                return ([
+                  date.getFullYear().toString(),
+                  String(date.getMonth()+1).padStart(2, '0'), 
+                  String(date.getDate()).padStart(2, '0')
+                ].join('-') + ' 00:00:00')
+              }
+              event.startDate = dateFormat(new Date(event.start));
+              event.endDate = dateFormat(new Date(event.end));
+            }
+          }
+        })
+      })
+      res.status(200).json({calendars: calendars, tz: tz});
     })
     .catch(error => {
       console.log('failed request: ', requestedCals);
