@@ -31,7 +31,7 @@ export default function handler(req, res) {
                   date.getFullYear().toString(),
                   String(date.getMonth()+1).padStart(2, '0'), 
                   String(date.getDate()).padStart(2, '0')
-                ].join('-') + ' 00:00:00')
+                ].join('-') + 'T00:00:00')
               }
               event.startDate = dateFormat(new Date(event.start));
               event.endDate = dateFormat(new Date(event.end));
