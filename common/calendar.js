@@ -1,7 +1,7 @@
 export const calList = [
   { name: 'rs', id: 'ZXA1dGh3YXJkcnNAZ21haWwuY29t', label: 'Relief Society', color: 'ff2ecb', types: ['all']},
-  { name: 'eq', id: 'ZXA1dGh3YXJkZXFAZ21haWwuY29t', label: "Elder's Quorum", color: 'f6bf26', type: ['all']},
-  { name: 'primary', id: 'ZXA1dGh3YXJkcHJpbWFyeUBnbWFpbC5jb20', label: "Primary", color: 'f4511e', type: ['all']},
+  { name: 'eq', id: 'ZXA1dGh3YXJkZXFAZ21haWwuY29t', label: "Elder's Quorum", color: 'f6bf26', types: ['all']},
+  { name: 'primary', id: 'ZXA1dGh3YXJkcHJpbWFyeUBnbWFpbC5jb20', label: "Primary", color: 'f4511e', types: ['all']},
   { name: 'youth', id: 'ZXA1dGh3YXJkeW91dGhAZ21haWwuY29t', label: 'Youth', color: '00c9c9', types: ['all','ym','yw']},
   { name: 'youngWomen', id: 'NTRhazhkNGQ1MW5tMGhrNDR1M2UzZjUwMWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'Young Women', color: '550066', types: ['all', 'yw']},
   { name: 'yw14_18', id: 'NzUyNTR0MDNzN2hnanZncThlb3RwamZjaDRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', label: 'YW 14-18', color: '8600b3', types: ['all', 'yw']},

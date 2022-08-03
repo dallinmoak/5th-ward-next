@@ -36,6 +36,11 @@ export default function GetCalendars(props){
               }
             }
           }
+          if(calItem.type == 'VCALENDAR'){
+            if( calItem['WR-CALNAME'] == 'Elders Quorum'){
+              calItem['WR-CALNAME'] = "Elder's Quorum";
+            }
+          }
         })
       })
       let sortedEventList = eventList.sort((a,b)=> {

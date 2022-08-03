@@ -6,7 +6,7 @@ import GetCalendars from '../components/cal/get-calendars';
 
 export default function Calendar(props) {
   const nav = navItem("Calendar")
-  const calNames = ['Youth','Deacons','Teachers','Preists','YW 12-13','YW 14-18','Young Men','Young Women'];
+  const calNames = ['Youth','Deacons','Teachers','Preists','YW 12-13','YW 14-18','Young Men','Young Women', 'Relief Society', "Elder's Quorum", "Primary" ];
 
   return (
     <div className={styles['container']}>

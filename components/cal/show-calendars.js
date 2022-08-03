@@ -9,6 +9,7 @@ export default function ShowCalendars(props) {
   useEffect(()=> {},[props.includeList])
 
   let detailedEvents = props.events.map((event, index)=> {
+    // console.log(props.includeList, event.calendar['WR-CALNAME']);
     let includedItem = props.includeList.find(item => item.label == event.calendar['WR-CALNAME']);
     if(!includedItem){
       event.color = '#555555';
@@ -24,55 +25,24 @@ export default function ShowCalendars(props) {
 
   let dateList = Array.from(new Set(detailedEvents.map(event => {
     if (event.details.start){
-      return event.details.datetype == 'date' ? event.details.startDate : event.details.start
+      const dateString = event.details.datetype == 'date' ? event.details.startDate : event.details.start;
+      const dateObj = new Date(dateString);
+      const dateFinal = `${dateObj.getFullYear().toString()}-${String(dateObj.getMonth()+1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2,'0')}T00:00:00.000`;
+      return dateFinal;
     }
   }))).map(item =>{
     return { date: item, events: [] };
   })
-  
 
   detailedEvents.forEach(event => {
-    let targetDate = event.details.datetype == 'date' ? event.details.startDate : event.details.start
+    const dateObj = new Date(event.details.datetype == 'date' ? event.details.startDate : event.details.start);
+    const dateFinal = `${dateObj.getFullYear().toString()}-${String(dateObj.getMonth()+1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2,'0')}T00:00:00.000`;
     dateList.forEach(dateItem => {
-      if(dateItem.date == targetDate){
+      if(dateItem.date == dateFinal){
         dateItem.events.push(event);
       }
     })
   })
-
-  function printEvent(event, index) {
-    let summary = event.details.summary;
-    let description = event.details.description;
-    let location = event.details.location;
-    let calendar = event.calendar["WR-CALNAME"];
-    let calShort = calendar;
-    if(event.calendar['WR-CALNAME'] == "Young Women"){
-      calShort = "YW";
-    }
-    if(event.calendar['WR-CALNAME'] == "Young Men"){
-      calShort = "YM";
-    }
-    let timeformat = {hour: 'numeric', minute: 'numeric', hour12: true }
-    let startTime = new Intl.DateTimeFormat('en-us', timeformat).format(new Date(event.details.start));
-    let allDay = event.details.datetype == 'date' ? true: false;
-    return(
-      <div key={index} style={{ backgroundColor: `#${event.color}`, color: "#fff"}} className={styles['event-item']}>
-        <div>{allDay ? 'All day' : startTime}</div>
-        <div>
-          <div className={styles['event-summary']}>{summary}</div>
-          {description?
-            <div className={styles['event-description']}>{description}</div> :
-            null
-          }
-          {location? 
-            <div className={styles['event-location']}>{location}</div>:
-            null
-          }
-        </div>
-        <div className={styles['event-calendar']}>{calShort}</div>
-      </div>
-    )
-  }
 
   function printDate(date, index){
     let currentDate = new Date(date.date);
@@ -93,6 +63,7 @@ export default function ShowCalendars(props) {
         </div>
         <div className={styles['event-items']}>
           {date.events.map((event, index) =>{
+            // console.log(event.details.summary, event.color);
             return <EventDetails event={event} key={index} setModal={props.setModal}/>
           })}
         </div>
