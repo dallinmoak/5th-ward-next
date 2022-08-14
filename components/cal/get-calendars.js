@@ -17,29 +17,16 @@ export default function GetCalendars(props){
 
   function getCals(ids){
     setLoading(true);
-    fetch(`/api/calendars?calendars=${ids.join(',')}`)
+    const lookBack = 1000 * 60 * 60 * 24 * 7;
+    const lookForward = 1000 * 60 * 60 * 24 * 30 * 3;
+    fetch(`/api/calendars?calendars=${ids.join(',')}&lb=${lookBack}&lf=${lookForward}`)
     .then(response => response.json())
     .then(result => {
       let eventList = [];
       Object.values(result.calendars).forEach( calendar => {
         Object.values(calendar).forEach( calItem => {
           if(calItem.type == "VEVENT"){
-            const calStart = new Date(calItem.start);
-            const now = Date.now();
-            const weekAgo = new Date(now.valueOf()- 604800000);
-            const threeMonthsFromNow = new Date(now.valueOf() + 7890000000);
-            // only get events 1 week in the past
-            if(calStart >= weekAgo){
-              //only get events 3 months in the future
-              if(calStart <= threeMonthsFromNow){
-                eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
-              }
-            }
-          }
-          if(calItem.type == 'VCALENDAR'){
-            if( calItem['WR-CALNAME'] == 'Elders Quorum'){
-              calItem['WR-CALNAME'] = "Elder's Quorum";
-            }
+            eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
           }
         })
       })

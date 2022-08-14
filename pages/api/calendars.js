@@ -34,12 +34,51 @@ export default function handler(req, res) {
     return calendars;
   }
 
+  const calendarAliases = [{target: "Elders Quorum", value: "Elder's Quorum"}]
+
+  function setCalendarAliases(calendars){
+    return calendars.map(calendar => {
+      Object.values(calendar).forEach(item => {
+        if (item.type == "VCALENDAR"){
+          calendarAliases.forEach(alias =>{
+            if (item['WR-CALNAME'] == alias.target){
+              item['WR-CALNAME'] = alias.value;
+            }
+          })
+        }
+      })
+      return calendar;
+    })
+  }
+
+  function dateFilter(calendars,lb,lf){
+    return calendars.map(calendar => {
+      let newCalendar = {};
+      Object.values(calendar).forEach(item => {
+        if(item.type == 'VEVENT'){
+          const calStart = new Date(item.start).valueOf();
+          if ((calStart >= lb) && (calStart <= lf)){
+            newCalendar[item.uid] = item;
+          }
+        } else {
+          newCalendar.vcalendar = item;
+        }
+      })
+      return newCalendar;
+    })
+  }
+
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const requestedCals = req.query.calendars.split(',');
+  const now = Date.now();
+  const lookBack = new Date(now.valueOf() - parseFloat(req.query.lb));
+  const lookForward = new Date(now.valueOf()  + parseFloat(req.query.lf));
   if( requestedCals) {
     getCalendars(requestedCals)
     .then(calendars => {
       calendars = addAllDayDates(calendars);
+      calendars = setCalendarAliases(calendars);
+      calendars = dateFilter(calendars, lookBack, lookForward);
       res.status(200).json({calendars: calendars, tz: tz});
     })
     .catch(error => {
