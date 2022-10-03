@@ -69,24 +69,45 @@ export default function handler(req, res) {
   }
 
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const requestedCals = req.query.calendars.split(',');
+  const calsPresent = req.query.calendars ? true : false;
+  
   const now = Date.now();
   const lookBack = new Date(now.valueOf() - parseFloat(req.query.lb));
   const lookForward = new Date(now.valueOf()  + parseFloat(req.query.lf));
-  if( requestedCals) {
+  if( calsPresent) {
+    const requestedCals = req.query.calendars.split(',');
     getCalendars(requestedCals)
     .then(calendars => {
       calendars = addAllDayDates(calendars);
       calendars = setCalendarAliases(calendars);
       calendars = dateFilter(calendars, lookBack, lookForward);
-      res.status(200).json({calendars: calendars, tz: tz});
+      let eventList = [];
+      Object.values(calendars).forEach( calendar => {
+        Object.values(calendar).forEach( calItem => {
+          if(calItem.type == 'VEVENT'){
+            eventList.push({
+              calName: calendar.vcalendar['WR-CALNAME'],
+              eventSum: calItem.summary,
+              eventStart: calItem.start,
+              eventEnd: calItem.end,
+              calendar: calendar.vcalendar,
+              details: calItem,
+              id: calItem.uid
+            })
+          }
+        })
+      });
+      let sortedEventList = eventList.sort((a, b)=>{
+        return new Date(a.details.start).valueOf() > new Date(b.details.start).valueOf() ? 1: -1;
+      })
+      res.status(200).json({resultCount: calendars.length, eventList: sortedEventList, tz: tz});
     })
     .catch(error => {
       console.log('failed request: ', requestedCals);
       res.status(500).json({ error })
     })
   } else {
-    console.log('no cal request: ', requestedCals);
+    console.log('no calendars requested.', `query: ${req.query}` );
     res.status(400).json({ error: "no calendars" })
   }
 }

@@ -22,18 +22,7 @@ export default function GetCalendars(props){
     fetch(`/api/calendars?calendars=${ids.join(',')}&lb=${lookBack}&lf=${lookForward}`)
     .then(response => response.json())
     .then(result => {
-      let eventList = [];
-      Object.values(result.calendars).forEach( calendar => {
-        Object.values(calendar).forEach( calItem => {
-          if(calItem.type == "VEVENT"){
-            eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
-          }
-        })
-      })
-      let sortedEventList = eventList.sort((a,b)=> {
-        return new Date(a.details.start).valueOf() > new Date(b.details.start).valueOf() ? 1 : -1;
-      })
-      setEvents(sortedEventList);
+      setEvents(result.eventList);
     })
     .then(setLoading(false))
     .catch(e => console.log('error', e));
