@@ -16,57 +16,44 @@ export default function GetCalendars(props){
   const calsToFetch = manageIncludeList.getCalsFetch();
 
   function getCals(ids){
-    setLoading(true);
-    fetch(`/api/calendars?calendars=${ids.join(',')}`)
-    .then(response => response.json())
-    .then(result => {
-      let eventList = [];
-      Object.values(result.calendars).forEach( calendar => {
-        Object.values(calendar).forEach( calItem => {
-          if(calItem.type == "VEVENT"){
-            const calStart = new Date(calItem.start);
-            const now = Date.now();
-            const weekAgo = new Date(now.valueOf()- 604800000);
-            const threeMonthsFromNow = new Date(now.valueOf() + 7890000000);
-            // only get events 1 week in the past
-            if(calStart >= weekAgo){
-              //only get events 3 months in the future
-              if(calStart <= threeMonthsFromNow){
-                eventList.push({calendar: calendar.vcalendar, details: calItem, id: ''})
-              }
-            }
-          }
-          if(calItem.type == 'VCALENDAR'){
-            if( calItem['WR-CALNAME'] == 'Elders Quorum'){
-              calItem['WR-CALNAME'] = "Elder's Quorum";
-            }
-          }
-        })
+    return new Promise( resolve =>{
+      setLoading(true);
+      const lookBack = 1000 * 60 * 60 * 24 * 7;
+      const lookForward = 1000 * 60 * 60 * 24 * 30 * 3;
+      fetch(`/api/calendars?calendars=${ids.join(',')}&lb=${lookBack}&lf=${lookForward}`)
+      .then(response => response.json())
+      .then(result => {
+        setEvents(result.eventList);
       })
-      let sortedEventList = eventList.sort((a,b)=> {
-        return new Date(a.details.start).valueOf() > new Date(b.details.start).valueOf() ? 1 : -1;
-      })
-      setEvents(sortedEventList);
+      .then(resolve())
+      .catch(e => console.log('error', e));
     })
-    .then(setLoading(false))
-    .catch(e => console.log('error', e));
   }
 
   useEffect(() => {
-    getCals(calsToFetch);
+    setLoading(true);
+    getCals(calsToFetch)
+    .then(()=>{
+      setLoading(false);
+    });
   },[])
+
+  if(loading){
+    return  <div>loading calendars...</div>;
+  }
 
   return(
     <div className={styles["calendar-container"]}>
-      <div className={styles['refresh-icon']} onClick={()=> getCals(calsToFetch)}>
+      <div className={styles['refresh-icon']} onClick={()=> getCals(calsToFetch).then(()=>{
+      setLoading(false);
+    })}>
         Click to refresh
         <FontAwesomeIcon 
           icon={refresh}
           alt='refresh'
         />
       </div>
-      {loading? <div>loading calendars...</div>:
-      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>}
+      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>
     </div>
   )
 
