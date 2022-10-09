@@ -16,33 +16,44 @@ export default function GetCalendars(props){
   const calsToFetch = manageIncludeList.getCalsFetch();
 
   function getCals(ids){
-    setLoading(true);
-    const lookBack = 1000 * 60 * 60 * 24 * 7;
-    const lookForward = 1000 * 60 * 60 * 24 * 30 * 3;
-    fetch(`/api/calendars?calendars=${ids.join(',')}&lb=${lookBack}&lf=${lookForward}`)
-    .then(response => response.json())
-    .then(result => {
-      setEvents(result.eventList);
+    return new Promise( resolve =>{
+      setLoading(true);
+      const lookBack = 1000 * 60 * 60 * 24 * 7;
+      const lookForward = 1000 * 60 * 60 * 24 * 30 * 3;
+      fetch(`/api/calendars?calendars=${ids.join(',')}&lb=${lookBack}&lf=${lookForward}`)
+      .then(response => response.json())
+      .then(result => {
+        setEvents(result.eventList);
+      })
+      .then(resolve())
+      .catch(e => console.log('error', e));
     })
-    .then(setLoading(false))
-    .catch(e => console.log('error', e));
   }
 
   useEffect(() => {
-    getCals(calsToFetch);
+    setLoading(true);
+    getCals(calsToFetch)
+    .then(()=>{
+      setLoading(false);
+    });
   },[])
+
+  if(loading){
+    return  <div>loading calendars...</div>;
+  }
 
   return(
     <div className={styles["calendar-container"]}>
-      <div className={styles['refresh-icon']} onClick={()=> getCals(calsToFetch)}>
+      <div className={styles['refresh-icon']} onClick={()=> getCals(calsToFetch).then(()=>{
+      setLoading(false);
+    })}>
         Click to refresh
         <FontAwesomeIcon 
           icon={refresh}
           alt='refresh'
         />
       </div>
-      {loading? <div>loading calendars...</div>:
-      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>}
+      <ShowCalendars events={events} includeList={props.includeList} setModal={props.setModal}/>
     </div>
   )
 
