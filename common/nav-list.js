@@ -8,7 +8,7 @@ const navList = [
   {name:'Young Women', route: '/young-women', navbar: true},
   {name:'Sunday School', route: '/sunday-school', navbar: true},
   {name:'Primary', route: '/primary', navbar: true},
-  {name: 'Missionaries', route: '/missionaries', navbar: false},
+  {name: 'Missionaries', route: '/missionaries', navbar: true},
 ];
 
 export default navList;
