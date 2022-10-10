@@ -8,7 +8,7 @@ export default function Missionaries() {
     <div className={styles['container']}>
       <PageHead nav={nav}/>
       <h1>{nav.name}</h1>
-      <p>click <a className={styles['message-link']} href='#' rel='noreferrer noopener' target='_blank'>here</a> to sign up to attend lessons with the missionaries</p>
+      <p>click <a className={styles['message-link']} href='https://docs.google.com/spreadsheets/d/1foGFyfCL9TykGL2s0ISRaaQ9siVpIXU1XZ0K2Nn4jGI/edit' rel='noreferrer noopener' target='_blank'>here</a> to sign up to attend lessons with the missionaries</p>
     </div>
   );
 }
