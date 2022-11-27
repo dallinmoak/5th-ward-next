@@ -31,7 +31,7 @@ const messages = [
     header: 'Relief Society Leadership',
     content: [
       'President: Rebekah Moak - 915-249-1666',
-      '1st Counselor: Catherine Call - 509-688-3788',
+      '1st Counselor: Jenny Pearce - 915-276-6522',
       '2nd Counselor: Whitney Bowden - 307-438-3595',
       'Secretary: Toni Call - 801-473-1135',
       'Service Coordinator: Laurie Jensen - 915-238-4850',
