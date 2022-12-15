@@ -28,7 +28,7 @@ export default function Missionaries() {
           target='_blank'>
           fb.me/Steadfastinlascrucesandelpaso
         </a>
-        . We have a livestream every Friday at 7pm called "Moving Mountains"
+        . We have a livestream every Friday at 7pm called &quot;Moving Mountains&quot;
         where there is a topic each week and the speakers talk about it. We are
         encouraging everyone to watch it whenever they can and share it with
         their friends!
