@@ -20,7 +20,7 @@ export default function Missionaries() {
         to sign up to attend lessons with the missionaries
       </p>
       <p>
-        Visit our facebook page at{" "}
+        &ldquo;Visit our facebook page at{" "}
         <a
           className={styles["message-link"]}
           href='https://www.facebook.com/Steadfastinlascrucesandelpaso'
@@ -37,7 +37,7 @@ export default function Missionaries() {
         Also, if anyone would be interested in being on Moving Mountains as
         speakers or would like to share their talents (singing, share their
         testimony, etc.) during the interludes to let us know and we can set
-        things up!”
+        things up!&rdquo;
       </p>
     </div>
   );
