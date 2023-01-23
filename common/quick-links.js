@@ -9,7 +9,7 @@
     type:'external'},
   {
     name: 'View the ward newsletter',
-    content:'https://drive.google.com/uc?export=view&id=1_YngjUW52VBugM6o58JUw6q_UvQrHLBS',
+    content:'https://drive.google.com/file/d/1_YngjUW52VBugM6o58JUw6q_UvQrHLBS/view?usp=personal-site',
     type:'external'},
   {
     name: 'Announcements from the Bishopric',
