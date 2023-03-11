@@ -72,7 +72,7 @@ export default function EventDetailsModal(props){
                 <div>{props.summary}</div>
               </div>
               <div className={styles['modal-startend']}>{printStartEnd()}</div>
-              {props.description? <div className={styles['modal-icon-basic']}><Fa icon={info}/>{parse(props.description)}</div> : null}
+              {props.description? <div className={styles['modal-icon-basic']}><Fa icon={info}/><div>{parse(props.description)}</div></div> : null}
               {props.location? <div className={styles['modal-icon-basic']}><Fa icon={loc}/>{props.location}</div>: null}
             </div>
             <div onClick={()=>props.setShowModal(false)} className={styles['modal-close']}>
