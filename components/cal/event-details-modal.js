@@ -2,6 +2,8 @@ import styles from '../../styles/calendars.module.scss';
 import {useRef } from 'react';
 import ReactDom from 'react-dom';
 
+import parse from 'html-react-parser';
+
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import { faCalendar as calIcon } from '@fortawesome/free-regular-svg-icons';
 import { faXmark as close, faCircleInfo as info, faLocationDot as loc } from "@fortawesome/free-solid-svg-icons";
@@ -70,7 +72,7 @@ export default function EventDetailsModal(props){
                 <div>{props.summary}</div>
               </div>
               <div className={styles['modal-startend']}>{printStartEnd()}</div>
-              {props.description? <div className={styles['modal-icon-basic']}><Fa icon={info}/>{props.description}</div> : null}
+              {props.description? <div className={styles['modal-icon-basic']}><Fa icon={info}/>{parse(props.description)}</div> : null}
               {props.location? <div className={styles['modal-icon-basic']}><Fa icon={loc}/>{props.location}</div>: null}
             </div>
             <div onClick={()=>props.setShowModal(false)} className={styles['modal-close']}>
