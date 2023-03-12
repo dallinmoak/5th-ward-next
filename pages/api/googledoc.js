@@ -38,7 +38,7 @@ const handler = async (req, res) =>{
   console.log(util.inspect(docRes.data, false, 17));
   // return res.data;
   
-  res.status(200).json("yee-haw");
+  res.status(200).json(docRes.data.body.content );
 }
 
 export default handler;
