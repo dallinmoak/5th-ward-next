@@ -9,6 +9,7 @@ const navList = [
   {name:'Sunday School', route: '/sunday-school', navbar: true},
   {name:'Primary', route: '/primary', navbar: true},
   {name: 'Missionaries', route: '/missionaries', navbar: true},
+  {name: 'Parse GDoc', route: '/parse-gdoc', navbar: true}
 ];
 
 export default navList;

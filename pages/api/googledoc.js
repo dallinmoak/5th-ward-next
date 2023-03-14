@@ -13,7 +13,31 @@ const util = require('util');
 const {google} = require('googleapis');
 const {authenticate} = require('@google-cloud/local-auth');
 
+const processDocumentData = docInfo =>{
+  console.log("docInfo", docInfo)
+  let outData = [];
+  Object.values(docInfo).forEach(docItem =>{
+    if(docItem.paragraph){
+      if(docItem.paragraph.elements){
+        const item = `<p>${docItem.paragraph.elements.map(el => {
+          if(el.textRun){
+            console.log(el);
+            return el.textRun.content
+          } else return(`[no text in this paragraph. it's probably an image.]`)
+        }).join("")}</p>`
+        outData.push(item);
+      }
+    }
+  })
+  
+  return outData;
+}
+
 const handler = async (req, res) =>{
+  const docId = req.query.docId;
+  if(!docId){
+    res.status(400).json("no docID provided");
+  }
   let creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
   //need to make the newlines newlinier
@@ -30,15 +54,24 @@ const handler = async (req, res) =>{
   google.options({auth});
 
   const docs = google.docs('v1');
+  try{
+    const docRes = await docs.documents.get({
+      // documentId: '1SsoOb5Tv2NymjUnTcTQ2u5YVJoF-MmlUOr9dvsoT6Oc',
+      documentId: docId,
+    });
 
-  const docRes = await docs.documents.get({
-    documentId: '1SsoOb5Tv2NymjUnTcTQ2u5YVJoF-MmlUOr9dvsoT6Oc',
-  });
+    // console.log(docRes.data.body.content);
+    const copy = docRes.data.body.content;
+    console.log( docRes);
+    const output = processDocumentData(copy);
 
-  console.log(util.inspect(docRes.data, false, 17));
-  // return res.data;
-  
-  res.status(200).json(docRes.data.body.content );
+    res.status(200).json( output );
+  }
+  catch(e){
+    console.log(e);
+    res.status(401).json(e);
+  }
+
 }
 
 export default handler;
