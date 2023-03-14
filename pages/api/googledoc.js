@@ -9,19 +9,15 @@
 
 //then auth on the server with that.
 
-const util = require('util');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const processDocumentData = docInfo =>{
-  console.log("docInfo", docInfo)
   let outData = [];
   Object.values(docInfo).forEach(docItem =>{
     if(docItem.paragraph){
       if(docItem.paragraph.elements){
         const item = `<p>${docItem.paragraph.elements.map(el => {
           if(el.textRun){
-            console.log(el);
             return el.textRun.content
           } else return(`[no text in this paragraph. it's probably an image.]`)
         }).join("")}</p>`
@@ -45,7 +41,6 @@ const handler = async (req, res) =>{
     creds[key] = creds[key].split(String.raw`\n`).join('\n')
   })
 
-  // console.log("Client email:",creds.client_email);
   const auth = new google.auth.GoogleAuth({
     credentials: creds,
   scopes: ['https://www.googleapis.com/auth/documents']
@@ -56,13 +51,10 @@ const handler = async (req, res) =>{
   const docs = google.docs('v1');
   try{
     const docRes = await docs.documents.get({
-      // documentId: '1SsoOb5Tv2NymjUnTcTQ2u5YVJoF-MmlUOr9dvsoT6Oc',
       documentId: docId,
     });
 
-    // console.log(docRes.data.body.content);
     const copy = docRes.data.body.content;
-    console.log( docRes);
     const output = processDocumentData(copy);
 
     res.status(200).json( output );

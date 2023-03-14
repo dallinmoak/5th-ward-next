@@ -103,6 +103,14 @@
     padding: 1.5rem 1.5rem 0 1.5rem;
     border: none;
   }
+  .doc-widget{
+    text-align:start;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid $mid-gray;
+    border-radius: 0.2em;
+    box-shadow: inset 0px 0px 3px 1px color.adjust($mid-gray, $alpha: -0.5);
+  }
 }
 
 .quick-links{

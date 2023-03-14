@@ -39,8 +39,6 @@ export default function ParseGdoc() {
         }
       })
       .then((result) => {
-        console.log(result);
-
         setDocContents(<>{result.map((item) => parse(item))}</>);
       })
       .catch((e) => {
@@ -49,14 +47,16 @@ export default function ParseGdoc() {
       });
   };
 
-  useEffect(() => {fetchDocContents()}, []);
+  useEffect(() => {
+    fetchDocContents();
+  }, []);
 
   return (
     <>
       <PageHead nav={nav} />
       <div className={styles["container"]}>
         <button onClick={fetchDocContents}>refresh</button>
-        {docContents}
+        <div className={styles["doc-widget"]}>{docContents}</div>
       </div>
     </>
   );
