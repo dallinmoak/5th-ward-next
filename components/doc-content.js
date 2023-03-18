@@ -34,7 +34,9 @@ export default function DocContent(props) {
           }
         })
         .then((result) => {
-          setDocContents(<>{result.map((item) => parse(item))}</>);
+          // console.log("raw: ", result.raw);
+          // console.log("output: ", result.output);
+          setDocContents(<>{result.output.map((item) => parse(item.replace("\n","&nbsp;")))}</>);
         })
         .catch((e) => {
           setDocContents(e.message);
@@ -43,12 +45,7 @@ export default function DocContent(props) {
     }
   };
 
-  let inner;
-  if (!props.docId) {
-    inner = "error: no docId provided.";
-  } else {
-    inner = docContents;
-  }
+  const inner = props.docId ? docContents : "error: no docId provided."
 
   useEffect(() => {
     fetchDocContents(props.docId);

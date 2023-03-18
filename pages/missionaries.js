@@ -8,9 +8,9 @@ export default function Missionaries() {
   return (
     <div className={styles["container"]}>
       <PageHead nav={nav} />
-      <h1>{nav.name}</h1>
+      {/* <h1>{nav.name}</h1> */}
       <DocContent docId="1SsoOb5Tv2NymjUnTcTQ2u5YVJoF-MmlUOr9dvsoT6Oc"/>
-      <p>
+      {/* <p>
         click{" "}
         <a
           className={styles["message-link"]}
@@ -40,7 +40,7 @@ export default function Missionaries() {
         speakers or would like to share their talents (singing, share their
         testimony, etc.) during the interludes to let us know and we can set
         things up!&rdquo;
-      </p>
+      </p> */}
     </div>
   );
 }
