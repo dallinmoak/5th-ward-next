@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import parse from "html-react-parser";
 
 export default function DocContent(props) {
+
+  const [loading, setLoading ] = useState(true);
   const [docContents, setDocContents] = useState();
 
   const fetchDocContents = async docId => {
@@ -37,6 +39,7 @@ export default function DocContent(props) {
           // console.log("raw: ", result.raw);
           // console.log("output: ", result.output);
           setDocContents(<>{result.output.map((item) => parse(item.replace("\n","&nbsp;")))}</>);
+          setLoading(false);
         })
         .catch((e) => {
           setDocContents(e.message);
@@ -54,7 +57,11 @@ export default function DocContent(props) {
   return (
     <>
       <button onClick={()=>fetchDocContents(props.docId)}>refresh</button>
-      <div className={styles["doc-widget"]}>{inner}</div>
+      {
+        loading ? 
+        <p>loading..</p> :
+        <div className={styles["doc-widget"]}>{inner}</div>
+      }
     </>
   );
 }
