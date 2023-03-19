@@ -8,7 +8,7 @@ export default function Missionaries() {
   return (
     <div className={styles["container"]}>
       <PageHead nav={nav} />
-      <DocContent docId="1SsoOb5Tv2NymjUnTcTQ2u5YVJoF-MmlUOr9dvsoT6Oc"/>
+      <DocContent docId={process.env.NEXT_PUBLIC_MISSIONARIES_DOC_ID}/>
     </div>
   );
 }
