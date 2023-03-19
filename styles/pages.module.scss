@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 1em 0;
+  margin: 1em 0.5em;
   em{
     font-size: 0.9em;
   }
@@ -14,7 +14,7 @@
     margin-block-start: 0.2em;
     margin-block-end: 0.2em;
   }
-  a.message-link,.message-link-container>a{
+  a.message-link,.message-link-container>a,.doc-widget a{
     color: $mid-blue;
     text-decoration: underline;
     &:hover{
@@ -102,6 +102,28 @@
     height: 30em;
     padding: 1.5rem 1.5rem 0 1.5rem;
     border: none;
+  }
+  .doc-widget{
+    text-align:start;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid $mid-gray;
+    border-radius: 0.2em;
+    box-shadow: inset 0px 0px 3px 1px color.adjust($mid-gray, $alpha: -0.5);
+    max-width: 40em;
+    underline{
+      text-decoration: underline;
+    }
+    italicdecorator{
+      font-style: italic;
+    }
+    bold{
+      font-weight: bold;
+    }
+    img{
+      max-width: 100% !important;
+      aspect-ratio: auto;
+    }
   }
 }
 
