@@ -3,7 +3,6 @@ import Link from 'next/link';
 import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
 
-import PageMessage from '../components/page-message';
 import DocContent from '../components/doc-content';
 
 export default function YoungWomen() {
