@@ -71,19 +71,14 @@ const createParagraph = async (par, objects) => {
       } else {
         parType = namedStyleMap(par.paragraphStyle.namedStyleType);
       }
-      return `<${parType}>${elements.join("")}</${parType}>`;
+      const parAlignment = par.paragraphStyle.alignment;
+      const textAlign = parAlignment ? parAlignment : "start";
+      return `<${parType} style="text-align: ${textAlign}">${elements.join("")}</${parType}>`;
     })
     .catch((e) => console.log(e));
 };
 
 const processData = async (data) => {
-  // const dataURI = await imageDataURI.encodeFromURL(
-  //   "https://lh6.googleusercontent.com/o0-w-2KVX__k1AotlCG6ytaccWA39dYbZMDWImtkIYbMdxL_GY7O_BfhIlsxO4etKf-AfQs3RgLb3BJ06KriCtHPJSJjOoolJWe2pe2kbMzI2rI3bgoiQB7h9l4STiUq1ygNC13MxmQVrW2hNWSuAhcFvRmwlngr"
-  // );
-  // let output = {
-  // ...data,
-  //uri: dataURI
-  // };
   let outputPromises = [];
   const content = data.body.content;
   const objects = data.inlineObjects;
