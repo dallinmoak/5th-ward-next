@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 
 export default function DocContent(props) {
 
-  const [loading, setLoading ] = useState(true);
+  const [loading, setLoading ] = useState(props.docId ? true : false);
   const [docContents, setDocContents] = useState();
 
   const fetchDocContents = async docId => {
@@ -43,6 +43,7 @@ export default function DocContent(props) {
         })
         .catch((e) => {
           setDocContents(e.message);
+          setLoading(false);
           console.log(e);
         });
     }
@@ -59,7 +60,7 @@ export default function DocContent(props) {
       <button onClick={()=>fetchDocContents(props.docId)}>refresh</button>
       {
         loading ? 
-        <p>loading..</p> :
+        <p>loading...</p> :
         <div className={styles["doc-widget"]}>{inner}</div>
       }
     </>
