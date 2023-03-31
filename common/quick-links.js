@@ -1,7 +1,7 @@
  const quickLinks= [
   {
   name: 'View our ward program',
-  content:'https://bit.ly/5thwardsacrament',
+  content:'https://sacrament-program-archive.vercel.app/program/current',
   type:'external'},
   {
     name: 'Join our sacrament zoom meeting',
