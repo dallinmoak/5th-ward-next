@@ -1,6 +1,6 @@
  const quickLinks= [
   {
-    name: 'View our ward programx',
+    name: 'View our ward program',
     content:'https://app.wardbullet.com/channel/1018679',
     type:'external',
   },
