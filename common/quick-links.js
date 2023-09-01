@@ -2,7 +2,7 @@
   {
     name: 'View our ward program',
     content:'https://app.wardbullet.com/channel/1018679',
-    type:'external'
+    type:'external',
   },
   {
     name: 'Join our sacrament zoom meeting',
