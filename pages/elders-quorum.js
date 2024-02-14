@@ -1,7 +1,7 @@
 import styles from '../styles/pages.module.scss'
 import navItem from '../common/nav-item';
 import PageHead from '../components/page-head';
-import SundaySchoolWidget from '../components/sunday-school-widget';
+// import SundaySchoolWidget from '../components/sunday-school-widget';
 
 import DocContent from '../components/doc-content';
 
