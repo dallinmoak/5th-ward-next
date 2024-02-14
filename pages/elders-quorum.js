@@ -11,8 +11,8 @@ export default function EldersQuorum() {
     <div className={styles['container']}>
       <PageHead nav={nav}/>
       <DocContent docId={process.env.NEXT_PUBLIC_ELDERS_QUORUM_DOC_ID} />
-      // <h2>Sunday Lesson:</h2>
-      // <SundaySchoolWidget type="Elder's Quorum" />
+      {// <h2>Sunday Lesson:</h2>}
+      {// <SundaySchoolWidget type="Elder's Quorum" />}
     </div>
   );
 }
